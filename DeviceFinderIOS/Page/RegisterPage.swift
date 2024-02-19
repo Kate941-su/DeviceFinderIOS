@@ -12,6 +12,7 @@ struct RegisterPage: View {
   let deviceId: UUID = UUID()
   @State var password: String = ""
   let uuid: UUID = UUID()
+  let registerPageInteractor: RegisterPageInteractor = RegisterPageInteractor()
   
     var body: some View {
       NavigationStack {
@@ -43,6 +44,12 @@ struct RegisterPage: View {
               textColor: Color.white,
               backGroundColor: Color.blue
             )
+            .onTapGesture {
+              Task {
+                try await registerPageInteractor.setDocument()
+               _ = try await registerPageInteractor.getDocument()
+              }
+            }
             TextButton(
               text: "Debugsub",
               textColor: Color.white,

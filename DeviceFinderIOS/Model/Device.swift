@@ -7,10 +7,14 @@
 
 import Foundation
 import CryptoKit
+import FirebaseFirestore
 
-struct Device {
+struct Device: Identifiable, Codable {
+  @DocumentID var id: String?
+  var position: GeoPoint
   let device_id: String
   let device_password: String
+  @ServerTimestamp var update_at: Timestamp?
   
   var hashedDeviceId: String {
     get {
