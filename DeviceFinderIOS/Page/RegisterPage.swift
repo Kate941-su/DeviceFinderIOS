@@ -46,8 +46,7 @@ struct RegisterPage: View {
             )
             .onTapGesture {
               Task {
-                try await registerPageInteractor.setDocument()
-               _ = try await registerPageInteractor.getDocument()
+                try await registerPageInteractor.onTapRegisterButton()
               }
             }
             TextButton(
