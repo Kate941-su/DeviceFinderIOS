@@ -11,6 +11,7 @@ struct RegisterPage: View {
     
   let deviceId: UUID = UUID()
   @State var password: String = ""
+  let uuid: UUID = UUID()
   
     var body: some View {
       NavigationStack {
@@ -20,6 +21,15 @@ struct RegisterPage: View {
             .bold()
           Text(Util.getDeviceUUID() ?? "Error(nil)")
             .padding()
+          
+          //TODO: Debug Only
+          Text("[Debug] Custom UUID For Debug")
+            .padding()
+            .bold()          
+          Text(uuid.uuidString)
+            .padding()
+          //TODO: End Debug Only
+          
           Text("Device Password")
             .padding()
             .bold()
@@ -32,6 +42,11 @@ struct RegisterPage: View {
               text: "Register",
               textColor: Color.white,
               backGroundColor: Color.blue
+            )
+            TextButton(
+              text: "Debugsub",
+              textColor: Color.white,
+              backGroundColor: Color.red
             )
             Spacer()
           }

@@ -36,3 +36,9 @@ extension SHA256.Digest {
     return self.map{String(format: "%02hhx", $0)}.joined()
   }
 }
+
+extension SHA256.Digest {
+//  public func toString() -> String {
+////    return self.map{String(format: "%02hhx")}.joined()
+//  }
+}
