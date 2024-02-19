@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		D233D55D2B821D7800D67CD6 /* DeviceFinderIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */; };
-		D233D55F2B821D7800D67CD6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D55E2B821D7800D67CD6 /* ContentView.swift */; };
 		D233D5612B821D7A00D67CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233D5602B821D7A00D67CD6 /* Assets.xcassets */; };
 		D233D5652B821D7A00D67CD6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233D5642B821D7A00D67CD6 /* Preview Assets.xcassets */; };
 		D233D56F2B821D7A00D67CD6 /* DeviceFinderIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D56E2B821D7A00D67CD6 /* DeviceFinderIOSTests.swift */; };
 		D233D5792B821D7A00D67CD6 /* DeviceFinderIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D5782B821D7A00D67CD6 /* DeviceFinderIOSUITests.swift */; };
 		D233D57B2B821D7A00D67CD6 /* DeviceFinderIOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D57A2B821D7A00D67CD6 /* DeviceFinderIOSUITestsLaunchTests.swift */; };
+		D233D58B2B821DFD00D67CD6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D233D58A2B821DFD00D67CD6 /* .gitignore */; };
+		D233D58D2B821E7600D67CD6 /* LaunchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D58C2B821E7600D67CD6 /* LaunchPage.swift */; };
+		D233D58F2B821ED800D67CD6 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D58E2B821ED800D67CD6 /* Device.swift */; };
+		D233D5912B8221AE00D67CD6 /* EntrancePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D5902B8221AE00D67CD6 /* EntrancePage.swift */; };
+		D233D5932B82224E00D67CD6 /* FindPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D5922B82224E00D67CD6 /* FindPage.swift */; };
+		D233D5952B82225E00D67CD6 /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D5942B82225E00D67CD6 /* RegisterPage.swift */; };
+		D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D5972B82288D00D67CD6 /* GeoLocationService.swift */; };
+		D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D59A2B823A7600D67CD6 /* TextButton.swift */; };
+		D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D59C2B823E1E00D67CD6 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D222ED832B82D696002352B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D233D5592B821D7800D67CD6 /* DeviceFinderIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceFinderIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFinderIOSApp.swift; sourceTree = "<group>"; };
-		D233D55E2B821D7800D67CD6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D233D5602B821D7A00D67CD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D233D5622B821D7A00D67CD6 /* DeviceFinderIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceFinderIOS.entitlements; sourceTree = "<group>"; };
 		D233D5642B821D7A00D67CD6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +53,15 @@
 		D233D5742B821D7A00D67CD6 /* DeviceFinderIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceFinderIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D233D5782B821D7A00D67CD6 /* DeviceFinderIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFinderIOSUITests.swift; sourceTree = "<group>"; };
 		D233D57A2B821D7A00D67CD6 /* DeviceFinderIOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFinderIOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D233D58A2B821DFD00D67CD6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D233D58C2B821E7600D67CD6 /* LaunchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPage.swift; sourceTree = "<group>"; };
+		D233D58E2B821ED800D67CD6 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		D233D5902B8221AE00D67CD6 /* EntrancePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePage.swift; sourceTree = "<group>"; };
+		D233D5922B82224E00D67CD6 /* FindPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPage.swift; sourceTree = "<group>"; };
+		D233D5942B82225E00D67CD6 /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
+		D233D5972B82288D00D67CD6 /* GeoLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocationService.swift; sourceTree = "<group>"; };
+		D233D59A2B823A7600D67CD6 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		D233D59C2B823E1E00D67CD6 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +92,7 @@
 		D233D5502B821D7800D67CD6 = {
 			isa = PBXGroup;
 			children = (
+				D233D58A2B821DFD00D67CD6 /* .gitignore */,
 				D233D55B2B821D7800D67CD6 /* DeviceFinderIOS */,
 				D233D56D2B821D7A00D67CD6 /* DeviceFinderIOSTests */,
 				D233D5772B821D7A00D67CD6 /* DeviceFinderIOSUITests */,
@@ -95,11 +113,17 @@
 		D233D55B2B821D7800D67CD6 /* DeviceFinderIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D222ED832B82D696002352B1 /* Info.plist */,
+				D233D5992B823A6200D67CD6 /* Component */,
+				D233D5962B82286400D67CD6 /* Location */,
+				D233D5892B821DAF00D67CD6 /* Model */,
+				D233D5882B821DA700D67CD6 /* ViewModel */,
+				D233D5872B821D9B00D67CD6 /* Page */,
 				D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */,
-				D233D55E2B821D7800D67CD6 /* ContentView.swift */,
 				D233D5602B821D7A00D67CD6 /* Assets.xcassets */,
 				D233D5622B821D7A00D67CD6 /* DeviceFinderIOS.entitlements */,
 				D233D5632B821D7A00D67CD6 /* Preview Content */,
+				D233D59C2B823E1E00D67CD6 /* Util.swift */,
 			);
 			path = DeviceFinderIOS;
 			sourceTree = "<group>";
@@ -127,6 +151,48 @@
 				D233D57A2B821D7A00D67CD6 /* DeviceFinderIOSUITestsLaunchTests.swift */,
 			);
 			path = DeviceFinderIOSUITests;
+			sourceTree = "<group>";
+		};
+		D233D5872B821D9B00D67CD6 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				D233D58C2B821E7600D67CD6 /* LaunchPage.swift */,
+				D233D5902B8221AE00D67CD6 /* EntrancePage.swift */,
+				D233D5922B82224E00D67CD6 /* FindPage.swift */,
+				D233D5942B82225E00D67CD6 /* RegisterPage.swift */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		D233D5882B821DA700D67CD6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D233D5892B821DAF00D67CD6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D233D58E2B821ED800D67CD6 /* Device.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D233D5962B82286400D67CD6 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				D233D5972B82288D00D67CD6 /* GeoLocationService.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		D233D5992B823A6200D67CD6 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D233D59A2B823A7600D67CD6 /* TextButton.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D233D5652B821D7A00D67CD6 /* Preview Assets.xcassets in Resources */,
+				D233D58B2B821DFD00D67CD6 /* .gitignore in Resources */,
 				D233D5612B821D7A00D67CD6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,8 +326,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D233D55F2B821D7800D67CD6 /* ContentView.swift in Sources */,
+				D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */,
+				D233D58D2B821E7600D67CD6 /* LaunchPage.swift in Sources */,
+				D233D5952B82225E00D67CD6 /* RegisterPage.swift in Sources */,
 				D233D55D2B821D7800D67CD6 /* DeviceFinderIOSApp.swift in Sources */,
+				D233D5932B82224E00D67CD6 /* FindPage.swift in Sources */,
+				D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */,
+				D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */,
+				D233D58F2B821ED800D67CD6 /* Device.swift in Sources */,
+				D233D5912B8221AE00D67CD6 /* EntrancePage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +498,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceFinderIOS/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -434,7 +510,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
@@ -462,6 +538,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceFinderIOS/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -472,7 +550,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
