@@ -62,16 +62,29 @@ struct FindPage: View {
             Spacer()
           }.padding()
           if isTappedFind {
-            // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
+            // TODO: Debug Only
             Text("latitude: \(coordinates.latitude)")
               .padding()
             Text("longitude: \(coordinates.longitude)")
               .padding()
+            // TODO: End Debug Only
+            let place = [MarkerPlace(coordinates: coordinates)]
+            
+            // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
             Map(
               coordinateRegion: $region,
               interactionModes: .all,
-              showsUserLocation: false
-            )
+              annotationItems: place
+            ) { place in
+//              MapAnnotation(coordinate: place.location) {
+//                Image(.iconPhoneLocation)
+//                  .foregroundColor(Color(UIColor.systemBackground))
+//                  .padding()
+//                  .background(Color.orange.cornerRadius(10))}
+              // default marker
+              MapMarker(coordinate: place.location,
+                        tint: Color.orange)
+            }
           }
           Spacer()
         }.navigationTitle("Find")

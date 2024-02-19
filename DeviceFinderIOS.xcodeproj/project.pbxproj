@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222ED842B82DDCD002352B1 /* MarkerPlace.swift */; };
 		D233D55D2B821D7800D67CD6 /* DeviceFinderIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */; };
 		D233D5612B821D7A00D67CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233D5602B821D7A00D67CD6 /* Assets.xcassets */; };
 		D233D5652B821D7A00D67CD6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233D5642B821D7A00D67CD6 /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		D222ED832B82D696002352B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D222ED842B82DDCD002352B1 /* MarkerPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerPlace.swift; sourceTree = "<group>"; };
 		D233D5592B821D7800D67CD6 /* DeviceFinderIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceFinderIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFinderIOSApp.swift; sourceTree = "<group>"; };
 		D233D5602B821D7A00D67CD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				D233D59A2B823A7600D67CD6 /* TextButton.swift */,
+				D222ED842B82DDCD002352B1 /* MarkerPlace.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				D233D5932B82224E00D67CD6 /* FindPage.swift in Sources */,
 				D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */,
 				D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */,
+				D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */,
 				D233D58F2B821ED800D67CD6 /* Device.swift in Sources */,
 				D233D5912B8221AE00D67CD6 /* EntrancePage.swift in Sources */,
 			);
