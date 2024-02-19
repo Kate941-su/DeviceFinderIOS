@@ -6,7 +6,33 @@
 //
 
 import Foundation
+import CryptoKit
 
 struct Device {
+  let device_id: String
+  let device_password: String
   
+  var hashedDeviceId: String {
+    get {
+      return device_id.sha256().toString()
+    }
+  }
+  
+  var hashedDevicePassword: String {
+    get {
+      return device_password.sha256().toString()
+    }
+  }
+}
+
+extension String {
+  func sha256() -> SHA256Digest {
+    return SHA256.hash(data: Data(self.utf8))
+  }
+}
+
+extension SHA256.Digest {
+  public func toString() -> String {
+    return self.map{String(format: "%02hhx", $0)}.joined()
+  }
 }
