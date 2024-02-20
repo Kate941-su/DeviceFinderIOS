@@ -19,20 +19,20 @@ struct LaunchPage: View {
 
       }.onAppear {
         Task {
-//          try await Task.sleep(for: .seconds(2))
-//          state = .login
+          //          try await Task.sleep(for: .seconds(2))
+          //          state = .login
         }
       }
     } else if state == .login {
-//      FilePickerPage()
-//      LoginPage()
+      //      FilePickerPage()
+      //      LoginPage()
     } else {
-//      AvailableUserPage(userName: "")
+      //      AvailableUserPage(userName: "")
     }
   }
 }
 
-#Preview {
+#Preview{
   LaunchPage()
 }
 

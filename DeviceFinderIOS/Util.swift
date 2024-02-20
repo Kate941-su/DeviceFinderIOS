@@ -6,31 +6,30 @@
 //
 
 import Foundation
+
 #if os(macOS)
-import Cocoa
+  import Cocoa
 #elseif os(iOS)
-import UIKit
+  import UIKit
 #endif
-
-
 
 class Util {
   static func getDeviceUUID() -> String? {
     #if os(macOS)
-    // macOS specific code
-    if let uuidString = UserDefaults.standard.string(forKey: "deviceUUID") {
+      // macOS specific code
+      if let uuidString = UserDefaults.standard.string(forKey: "deviceUUID") {
         return uuidString
-    } else {
+      } else {
         let uuidString = UUID().uuidString
         UserDefaults.standard.set(uuidString, forKey: "deviceUUID")
         return uuidString
-    }
+      }
     #elseif os(iOS) || os(tvOS)
-    // iOS and tvOS specific code
-    let uuid = UIDevice.current.identifierForVendor?.uuidString
-    return uuid
+      // iOS and tvOS specific code
+      let uuid = UIDevice.current.identifierForVendor?.uuidString
+      return uuid
     #else
-    return nil
+      return nil
     #endif
   }
 }

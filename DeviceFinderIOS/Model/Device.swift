@@ -5,9 +5,9 @@
 //  Created by KaitoKitaya on 2024/02/18.
 //
 
-import Foundation
 import CryptoKit
 import FirebaseFirestore
+import Foundation
 
 struct Device: Identifiable, Codable {
   @DocumentID var id: String?
@@ -15,17 +15,13 @@ struct Device: Identifiable, Codable {
   let device_id: String
   let device_password: String
   @ServerTimestamp var update_at: Timestamp?
-  
+
   var hashedDeviceId: String {
-    get {
-      return device_id.sha256().toString()
-    }
+    return device_id.sha256().toString()
   }
-  
+
   var hashedDevicePassword: String {
-    get {
-      return device_password.sha256().toString()
-    }
+    return device_password.sha256().toString()
   }
 }
 
@@ -37,12 +33,12 @@ extension String {
 
 extension SHA256.Digest {
   public func toString() -> String {
-    return self.map{String(format: "%02hhx", $0)}.joined()
+    return self.map { String(format: "%02hhx", $0) }.joined()
   }
 }
 
 extension SHA256.Digest {
-//  public func toString() -> String {
-////    return self.map{String(format: "%02hhx")}.joined()
-//  }
+  //  public func toString() -> String {
+  ////    return self.map{String(format: "%02hhx")}.joined()
+  //  }
 }

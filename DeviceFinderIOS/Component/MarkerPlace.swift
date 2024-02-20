@@ -5,10 +5,9 @@
 //  Created by KaitoKitaya on 2024/02/19.
 //
 
-import Foundation
 import CoreLocation
 import FirebaseFirestore
-
+import Foundation
 
 struct MarkerPlace: Identifiable {
   let id: UUID

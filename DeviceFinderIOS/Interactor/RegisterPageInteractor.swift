@@ -5,14 +5,13 @@
 //  Created by KaitoKitaya on 2024/02/19.
 //
 
-import Foundation
 import FirebaseFirestore
+import Foundation
 
 // TODO: Make repository protocol
 class RegisterPageInteractor {
   let documentRepository: DocumentRepository = DocumentRepositoryImpl()
-  func onTapRegisterButton() async throws {
-    let result = try await documentRepository.getAllDocuments()
-    print(result)
+  func onTapRegisterButton(device: Device) async throws {
+    try await documentRepository.setDocument(device: device)
   }
 }
