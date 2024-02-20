@@ -8,6 +8,8 @@
 import Combine
 import CoreLocation
 import Foundation
+import FirebaseFirestore
+
 
 let POLE_RADIUS: Double = 6356752.314245
 let EQUATOR_RADIUS: Double = 6378137.0
@@ -64,7 +66,7 @@ class GeoLocationService: NSObject, CLLocationManagerDelegate, ObservableObject 
     coordinatesPublisher.send(completion: .failure(error))
   }
     
-  func getDistance(point1: Coordinates, point2: Coordinates) -> Double {
+  func getDistance(point1: GeoPoint, point2: GeoPoint) -> Double {
     /// https://www.gis-py.com/entry/py-latlon2distance
     let radianPoint1 = point1.convertToRadian()
     let radianPoint2 = point2.convertToRadian()
@@ -80,20 +82,14 @@ class GeoLocationService: NSObject, CLLocationManagerDelegate, ObservableObject 
   }
 }
 
-struct Coordinates {
-  let longitude: Double
-  let latitude: Double
-  init(latitude: Double, logitude: Double) {
-    self.latitude = latitude
-    self.longitude = logitude
-  }
+extension GeoPoint {
   
-  static func + (left: Coordinates, right: Coordinates) -> Coordinates {
-    return Coordinates(latitude: left.latitude + right.latitude, logitude: left.longitude + right.longitude)
+  static func + (left: GeoPoint, right: GeoPoint) -> GeoPoint {
+    return GeoPoint(latitude: left.latitude + right.latitude, longitude: left.longitude + right.longitude)
   }
 
-  static func - (left: Coordinates, right: Coordinates) -> Coordinates {
-    return Coordinates(latitude: left.latitude - right.latitude, logitude: left.longitude - right.longitude)
+  static func - (left: GeoPoint, right: GeoPoint) -> GeoPoint {
+    return GeoPoint(latitude: left.latitude - right.latitude, longitude: left.longitude - right.longitude)
   }
   
   func degreeToRadian(degree: Double) -> Double {
@@ -104,18 +100,17 @@ struct Coordinates {
     return radian * 180 / .pi
   }
   
-  func convertToRadian() -> Coordinates {
-    return Coordinates(
+  func convertToRadian() -> GeoPoint {
+    return GeoPoint(
       latitude: degreeToRadian(degree: self.longitude),
-      logitude: degreeToRadian(degree: self.latitude)
+      longitude: degreeToRadian(degree: self.latitude)
     )
   }
 
-  func convertToDegree() -> Coordinates {
-    return Coordinates(
+  func convertToDegree() -> GeoPoint {
+    return GeoPoint(
       latitude: radianToDegree(radian: self.longitude),
-      logitude: radianToDegree(radian: self.latitude)
+      longitude: radianToDegree(radian: self.latitude)
     )
-  }
-  
+  }  
 }

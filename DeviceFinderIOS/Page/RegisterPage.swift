@@ -36,7 +36,7 @@ struct RegisterPage: View {
             .bold()
           TextField("Enter Device Password", text: $password)
             .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
-            .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
+            .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
           HStack {
             Spacer()
             TextButton(

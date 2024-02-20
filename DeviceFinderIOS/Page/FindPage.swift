@@ -8,8 +8,9 @@
 import SwiftUI
 import Combine
 import MapKit
+import FirebaseFirestore
 
-// unit: m
+// unit: meter(m)
 let baseScale:CLLocationDistance = 100
 
 struct FindPage: View {
@@ -20,7 +21,7 @@ struct FindPage: View {
   // GeoLocationService
   @StateObject var geoLocationService = GeoLocationService.shared
   @State var tokens: Set<AnyCancellable> = []
-  @State var coordinates: Coordinates = Coordinates(latitude: 0.0, logitude: 0.0)
+  @State var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State private var region = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 35.0, longitude: 135.0),
     latitudinalMeters: baseScale,
@@ -51,8 +52,8 @@ struct FindPage: View {
               print("On Tapped")
               region = MKCoordinateRegion(
                 center: CLLocationCoordinate2D(
-                          latitude: CLLocationDegrees(coordinates.latitude),
-                          longitude: CLLocationDegrees(coordinates.longitude)),
+                          latitude: CLLocationDegrees(geoPoint.latitude),
+                          longitude: CLLocationDegrees(geoPoint.longitude)),
                           latitudinalMeters: baseScale,
                           longitudinalMeters: baseScale
                         )
@@ -63,12 +64,12 @@ struct FindPage: View {
           }.padding()
           if isTappedFind {
             // TODO: Debug Only
-            Text("latitude: \(coordinates.latitude)")
+            Text("latitude: \(geoPoint.latitude)")
               .padding()
-            Text("longitude: \(coordinates.longitude)")
+            Text("longitude: \(geoPoint.longitude)")
               .padding()
             // TODO: End Debug Only
-            let place = [MarkerPlace(coordinates: coordinates)]
+            let place = [MarkerPlace(geoPoint: geoPoint)]
             
             // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
             Map(
@@ -103,7 +104,10 @@ struct FindPage: View {
           print(error)
         }
       } receiveValue: { coordinates in
-        self.coordinates = Coordinates(latitude: coordinates.latitude, logitude: coordinates.longitude)
+        self.geoPoint = GeoPoint(
+                          latitude: coordinates.latitude,
+                          longitude: geoPoint.longitude
+        )
       }.store(in: &tokens)
   }
 

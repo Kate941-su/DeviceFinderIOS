@@ -7,16 +7,17 @@
 
 import Foundation
 import CoreLocation
+import FirebaseFirestore
 
 
 struct MarkerPlace: Identifiable {
   let id: UUID
   let location: CLLocationCoordinate2D
-  init(id: UUID = UUID(), coordinates: Coordinates) {
+  init(id: UUID = UUID(), geoPoint: GeoPoint) {
     self.id = id
     self.location = CLLocationCoordinate2D(
-      latitude: coordinates.latitude,
-      longitude: coordinates.longitude
+      latitude: geoPoint.latitude,
+      longitude: geoPoint.longitude
     )
   }
 }
