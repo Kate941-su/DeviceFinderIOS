@@ -18,6 +18,8 @@ struct TextButton: View {
     self.backGroundColor = backGroundColor
     self.textColor = textColor
   }
+  
+  @State var isTapped = false
 
   var body: some View {
     Text(text)
@@ -28,11 +30,15 @@ struct TextButton: View {
       .foregroundColor(Color.white)
       .background(backGroundColor)
       .clipShape(RoundedRectangle(cornerRadius: 24))
-    //          .onTapGesture {
-    //            guard let callback = self.callback else {return}
-    //            callback()
-    //          }
-    //          .animation(.spring, value: "a")
+//      .opacity(isTapped ? 0.6 : 1.0)
+//      .scaleEffect(isTapped ? 1.2 : 1.0)
+//      .pressEvents(onPress:{ withAnimation(.easeIn(duration: 0.2)){
+//        isTapped = true
+//      }},onRelease: {
+//        withAnimation(.easeInOut) {
+//          isTapped = false
+//        }
+//      })
   }
 }
 

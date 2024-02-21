@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+
+// TODO: Update NavigationStack With Path
+// https://qiita.com/yoshi-eng/items/91666637cd7cdd8edf88
+
 struct EntrancePage: View {
   
-  @State var isPressed: Bool = true
+  @State var path = NavigationPath()
   
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $path) {
       VStack {
         Spacer()
         NavigationLink(
@@ -22,9 +26,6 @@ struct EntrancePage: View {
               text: "Find",
               textColor: Color.white,
               backGroundColor: Color.blue)
-            .opacity(isPressed ? 0.6 : 1.0)
-            .scaleEffect(isPressed ? 1.2 : 1.0)
-            
           }
         )
         Spacer()

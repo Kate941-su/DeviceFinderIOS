@@ -103,15 +103,15 @@ extension GeoPoint {
 
   func convertToRadian() -> GeoPoint {
     return GeoPoint(
-      latitude: degreeToRadian(degree: self.longitude),
-      longitude: degreeToRadian(degree: self.latitude)
+      latitude: degreeToRadian(degree: self.latitude),
+      longitude: degreeToRadian(degree: self.longitude)
     )
   }
 
   func convertToDegree() -> GeoPoint {
     return GeoPoint(
-      latitude: radianToDegree(radian: self.longitude),
-      longitude: radianToDegree(radian: self.latitude)
+      latitude: radianToDegree(radian: self.latitude),
+      longitude: radianToDegree(radian: self.longitude)
     )
   }
 }

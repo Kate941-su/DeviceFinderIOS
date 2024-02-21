@@ -77,12 +77,6 @@ struct FindPage: View {
             interactionModes: .all,
             annotationItems: place
           ) { place in
-            //              MapAnnotation(coordinate: place.location) {
-            //                Image(.iconPhoneLocation)
-            //                  .foregroundColor(Color(UIColor.systemBackground))
-            //                  .padding()
-            //                  .background(Color.orange.cornerRadius(10))}
-            // default marker
             MapMarker(
               coordinate: place.location,
               tint: Color.orange)
@@ -107,7 +101,7 @@ struct FindPage: View {
       } receiveValue: { coordinates in
         self.geoPoint = GeoPoint(
           latitude: coordinates.latitude,
-          longitude: geoPoint.longitude
+          longitude: coordinates.longitude
         )
       }.store(in: &tokens)
   }
