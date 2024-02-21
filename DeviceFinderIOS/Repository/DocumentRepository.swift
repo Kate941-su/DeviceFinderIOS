@@ -31,6 +31,6 @@ class DocumentRepositoryImpl: ObservableObject, DocumentRepository {
   func setDocument(device: Device) async throws {
     let db = Firestore.firestore()
     let device = device
-    try db.collection("Device").document("devices").setData(from: device)
+    try db.collection("Device").document(device.device_id).setData(from: device)
   }
 }

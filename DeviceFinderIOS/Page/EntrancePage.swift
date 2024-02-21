@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct EntrancePage: View {
+  
+  @State var isPressed: Bool = true
+  
   var body: some View {
     NavigationStack {
       VStack {
@@ -19,6 +22,9 @@ struct EntrancePage: View {
               text: "Find",
               textColor: Color.white,
               backGroundColor: Color.blue)
+            .opacity(isPressed ? 0.6 : 1.0)
+            .scaleEffect(isPressed ? 1.2 : 1.0)
+            
           }
         )
         Spacer()

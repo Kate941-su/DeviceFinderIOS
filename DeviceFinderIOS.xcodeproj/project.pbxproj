@@ -38,6 +38,7 @@
 		D222EDBF2B82E852002352B1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D222EDBE2B82E852002352B1 /* FirebaseStorage */; };
 		D222EDC12B82E852002352B1 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D222EDC02B82E852002352B1 /* FirebaseStorageCombine-Community */; };
 		D222EDC42B82EF5D002352B1 /* RegisterPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222EDC32B82EF5D002352B1 /* RegisterPageInteractor.swift */; };
+		D222EDC62B839B73002352B1 /* DocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222EDC52B839B73002352B1 /* DocumentRepository.swift */; };
 		D233D55D2B821D7800D67CD6 /* DeviceFinderIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */; };
 		D233D5612B821D7A00D67CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233D5602B821D7A00D67CD6 /* Assets.xcassets */; };
 		D233D5652B821D7A00D67CD6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233D5642B821D7A00D67CD6 /* Preview Assets.xcassets */; };
@@ -53,6 +54,8 @@
 		D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D5972B82288D00D67CD6 /* GeoLocationService.swift */; };
 		D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D59A2B823A7600D67CD6 /* TextButton.swift */; };
 		D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D59C2B823E1E00D67CD6 /* Util.swift */; };
+		D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */; };
+		D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024B2B8623D4004F0FB7 /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,7 @@
 		D222ED862B82E2E3002352B1 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		D222ED892B82E7CE002352B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D222EDC32B82EF5D002352B1 /* RegisterPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageInteractor.swift; sourceTree = "<group>"; };
+		D222EDC52B839B73002352B1 /* DocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRepository.swift; sourceTree = "<group>"; };
 		D233D5592B821D7800D67CD6 /* DeviceFinderIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceFinderIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D233D55C2B821D7800D67CD6 /* DeviceFinderIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFinderIOSApp.swift; sourceTree = "<group>"; };
 		D233D5602B821D7A00D67CD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 		D233D5972B82288D00D67CD6 /* GeoLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocationService.swift; sourceTree = "<group>"; };
 		D233D59A2B823A7600D67CD6 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
 		D233D59C2B823E1E00D67CD6 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressAction.swift; sourceTree = "<group>"; };
+		D24E024B2B8623D4004F0FB7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,7 @@
 		D222EDC22B82E9F2002352B1 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				D222EDC52B839B73002352B1 /* DocumentRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -190,6 +197,8 @@
 		D233D55B2B821D7800D67CD6 /* DeviceFinderIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D24E024A2B8623C8004F0FB7 /* Router */,
+				D24E02472B861AE4004F0FB7 /* Modifier */,
 				D222EDC22B82E9F2002352B1 /* Repository */,
 				D222ED892B82E7CE002352B1 /* GoogleService-Info.plist */,
 				D222ED882B82E2E9002352B1 /* Validator */,
@@ -277,6 +286,22 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		D24E02472B861AE4004F0FB7 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		D24E024A2B8623C8004F0FB7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D24E024B2B8623D4004F0FB7 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,9 +309,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D233D57E2B821D7A00D67CD6 /* Build configuration list for PBXNativeTarget "DeviceFinderIOS" */;
 			buildPhases = (
+				D233D5572B821D7800D67CD6 /* Resources */,
 				D233D5552B821D7800D67CD6 /* Sources */,
 				D233D5562B821D7800D67CD6 /* Frameworks */,
-				D233D5572B821D7800D67CD6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -442,15 +467,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */,
+				D222EDC62B839B73002352B1 /* DocumentRepository.swift in Sources */,
 				D233D58D2B821E7600D67CD6 /* LaunchPage.swift in Sources */,
 				D233D5952B82225E00D67CD6 /* RegisterPage.swift in Sources */,
 				D233D55D2B821D7800D67CD6 /* DeviceFinderIOSApp.swift in Sources */,
 				D233D5932B82224E00D67CD6 /* FindPage.swift in Sources */,
 				D222ED872B82E2E3002352B1 /* Validator.swift in Sources */,
+				D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */,
 				D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */,
 				D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */,
 				D222EDC42B82EF5D002352B1 /* RegisterPageInteractor.swift in Sources */,
 				D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */,
+				D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */,
 				D233D58F2B821ED800D67CD6 /* Device.swift in Sources */,
 				D233D5912B8221AE00D67CD6 /* EntrancePage.swift in Sources */,
 			);

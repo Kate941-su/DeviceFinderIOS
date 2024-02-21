@@ -17,7 +17,7 @@ struct RegisterPage: View {
   let deviceUuid: String? = Util.getDeviceUUID()
   let registerPageInteractor: RegisterPageInteractor = RegisterPageInteractor()
 
-  @State var password: String = ""
+  @State var password: String = "aaaaaaaa"
   @State var tokens: Set<AnyCancellable> = []
   @State var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State var isShowAlert: Bool = false
@@ -81,7 +81,7 @@ struct RegisterPage: View {
             }
           }
           TextButton(
-            text: "Debugsub",
+            text: "Debug",
             textColor: Color.white,
             backGroundColor: Color.red
           )
