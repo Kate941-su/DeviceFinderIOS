@@ -8,26 +8,35 @@
 import SwiftUI
 
 struct LaunchPage: View {
-  @State var state = LaunchStateObject().state
+  let documentRepository = DocumentRepositoryImpl()
+  @EnvironmentObject var launchStateObject: LaunchStateObject
+  
   var body: some View {
-    if state == .fetching {
-      VStack(alignment: .center) {
-        Image(.splash)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .padding()
-
-      }.onAppear {
-        Task {
-          //          try await Task.sleep(for: .seconds(2))
-          //          state = .login
+    if launchStateObject.state == .fetching {
+        VStack(alignment: .center) {
+          Image(.splash)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .padding()
+        }.onAppear {
+          Task {
+            // TODO: Firebase Fetch Error Handling
+            do {
+              let uuid = Util.getDeviceUUID() ?? ""
+              let deviceList = try await documentRepository.getAllDocuments()
+              if (deviceList.map{ it in it.device_id }.contains(uuid)){
+                launchStateObject.state = .registerd
+              } else {
+                launchStateObject.state = .notRegisterd
+              }
+              print("Has Registered ?: \(launchStateObject.state)")
+            } catch {
+              print(error)
+            }
+          }
         }
-      }
-    } else if state == .login {
-      //      FilePickerPage()
-      //      LoginPage()
     } else {
-      //      AvailableUserPage(userName: "")
+        EntrancePage()
     }
   }
 }
@@ -36,12 +45,3 @@ struct LaunchPage: View {
   LaunchPage()
 }
 
-class LaunchStateObject: ObservableObject {
-  @Published var state: LaunchState = .fetching
-}
-
-enum LaunchState {
-  case fetching
-  case login
-  case main
-}

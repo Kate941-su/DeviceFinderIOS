@@ -20,5 +20,84 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AEC3403B-73C5-46AE-BF2C-E12C5A74FEC9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeviceFinderIOS/Page/LaunchPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64421400-B744-4DBD-82E3-50186B822BC2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeviceFinderIOS/Page/LaunchPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "64421400-B744-4DBD-82E3-50186B822BC2 - 7c1a863a9ee8c54"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in DeviceFinderIOS.LaunchPage.body.getter : some"
+                  moduleName = "DeviceFinderIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kkitaya/Desktop/DeviceFinderIOS/DeviceFinderIOS/Page/LaunchPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "64421400-B744-4DBD-82E3-50186B822BC2 - 998abc0f09d2be9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DeviceFinderIOS.Device) -&gt; Swift.Optional&lt;Swift.String&gt; in closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in DeviceFinderIOS.LaunchPage.body.getter : some"
+                  moduleName = "DeviceFinderIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kkitaya/Desktop/DeviceFinderIOS/DeviceFinderIOS/Page/LaunchPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "64421400-B744-4DBD-82E3-50186B822BC2 - c2daec738902949c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DeviceFinderIOS.Device) -&gt; Swift.String in closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in DeviceFinderIOS.LaunchPage.body.getter : some"
+                  moduleName = "DeviceFinderIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kkitaya/Desktop/DeviceFinderIOS/DeviceFinderIOS/Page/LaunchPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -56,6 +56,7 @@
 		D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D59C2B823E1E00D67CD6 /* Util.swift */; };
 		D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */; };
 		D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024B2B8623D4004F0FB7 /* Router.swift */; };
+		D24E024E2B863A49004F0FB7 /* LaunchPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024D2B863A49004F0FB7 /* LaunchPageInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		D233D59C2B823E1E00D67CD6 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressAction.swift; sourceTree = "<group>"; };
 		D24E024B2B8623D4004F0FB7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D24E024D2B863A49004F0FB7 /* LaunchPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPageInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				D222EDC32B82EF5D002352B1 /* RegisterPageInteractor.swift */,
+				D24E024D2B863A49004F0FB7 /* LaunchPageInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				D233D5932B82224E00D67CD6 /* FindPage.swift in Sources */,
 				D222ED872B82E2E3002352B1 /* Validator.swift in Sources */,
 				D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */,
+				D24E024E2B863A49004F0FB7 /* LaunchPageInteractor.swift in Sources */,
 				D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */,
 				D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */,
 				D222EDC42B82EF5D002352B1 /* RegisterPageInteractor.swift in Sources */,

@@ -26,7 +26,8 @@ struct DeviceFinderIOSApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   var body: some Scene {
     WindowGroup {
-      EntrancePage()
+      LaunchPage()
+        .environmentObject(LaunchStateObject())
     }
   }
 }
