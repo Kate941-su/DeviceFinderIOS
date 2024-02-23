@@ -12,7 +12,7 @@ import SwiftUI
 // https://qiita.com/yoshi-eng/items/91666637cd7cdd8edf88
 
 struct EntrancePage: View {
-  @EnvironmentObject var launchStateObject: LaunchStateObject
+  @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
   @State var path = NavigationPath()
   
   var body: some View {
@@ -34,7 +34,7 @@ struct EntrancePage: View {
         NavigationLink(
           destination: RegisterPage(),
           label: {
-            if (launchStateObject.state == .notRegisterd) {
+            if (launchPageViewModel.deviceRegisterState == .notRegisterd) {
               TextButton(
                 text: "Register",
                 textColor: Color.white,

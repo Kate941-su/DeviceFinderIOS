@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LaunchPage: View {
   let documentRepository = DocumentRepositoryImpl()
-  @EnvironmentObject var launchStateObject: LaunchStateObject
+  @EnvironmentObject var launchStateViewModel: LaunchPageViewModel
   
   var body: some View {
-    if launchStateObject.state == .fetching {
+    if launchStateViewModel.deviceRegisterState == .pending {
         VStack(alignment: .center) {
           Image(.splash)
             .resizable()
@@ -25,11 +25,11 @@ struct LaunchPage: View {
               let uuid = Util.getDeviceUUID() ?? ""
               let deviceList = try await documentRepository.getAllDocuments()
               if (deviceList.map{ it in it.device_id }.contains(uuid)){
-                launchStateObject.state = .registerd
+                launchStateViewModel.deviceRegisterState = .registerd
               } else {
-                launchStateObject.state = .notRegisterd
+                launchStateViewModel.deviceRegisterState = .notRegisterd
               }
-              print("Has Registered ?: \(launchStateObject.state)")
+              print("Has Registered ?: \(launchStateViewModel.deviceRegisterState)")
             } catch {
               print(error)
             }

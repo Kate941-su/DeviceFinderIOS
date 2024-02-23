@@ -27,7 +27,7 @@ struct DeviceFinderIOSApp: App {
   var body: some Scene {
     WindowGroup {
       LaunchPage()
-        .environmentObject(LaunchStateObject())
+        .environmentObject(LaunchPageViewModel())
     }
   }
 }
