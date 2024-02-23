@@ -12,6 +12,7 @@ protocol DocumentRepository {
   func getDocument() async throws -> Device?
   func getAllDocuments() async throws -> [Device]
   func setDocument(device: Device) async throws
+  func deleteDocument(device_id: String) async throws
 }
 
 // TODO: Make repository protocol
@@ -32,5 +33,10 @@ class DocumentRepositoryImpl: ObservableObject, DocumentRepository {
     let db = Firestore.firestore()
     let device = device
     try db.collection("Device").document(device.device_id).setData(from: device)
+  }
+  
+  func deleteDocument(device_id: String)async throws {
+    let db = Firestore.firestore()
+    try await db.collection("Device").document(device_id).delete()
   }
 }

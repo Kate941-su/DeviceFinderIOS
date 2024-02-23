@@ -13,7 +13,9 @@ import SwiftUI
 
 struct EntrancePage: View {
   @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
+  @StateObject var entrancePageViewModel: EntrancePageViewModel = EntrancePageViewModel()
   @State var path = NavigationPath()
+  @State var isShowDeleteDialog = false
   
   var body: some View {
     NavigationStack(path: $path) {
@@ -31,22 +33,43 @@ struct EntrancePage: View {
         Spacer()
         Divider()
         Spacer()
-        NavigationLink(
-          destination: RegisterPage(),
-          label: {
-            if (launchPageViewModel.deviceRegisterState == .notRegisterd) {
-              TextButton(
-                text: "Register",
-                textColor: Color.white,
-                backGroundColor: Color.green)
-            } else {
-              TextButton(
-                text: "Delete",
-                textColor: Color.white,
-                backGroundColor: Color.red)
+        if launchPageViewModel.deviceRegisterState == .notRegisterd {
+          NavigationLink(
+            destination: RegisterPage(),
+            label: {
+                TextButton(
+                  text: "Register",
+                  textColor: Color.white,
+                  backGroundColor: Color.green)
             }
+          )
+        } else {
+          TextButton(
+            text: "Delete",
+            textColor: Color.white,
+            backGroundColor: Color.red)
+          .onTapGesture {
+            print("Delte tapped")
+              isShowDeleteDialog = true
           }
-        )
+          .alert("Your device will be out of management and you will not be able to find it. Are you all right?",
+                 isPresented: $isShowDeleteDialog, actions: {
+            Button(action: {
+              isShowDeleteDialog = false
+            }, label: {
+              Text("No").bold()
+            })
+            Button(action: {
+              Task {
+                // TODO: nil Handling
+                try await entrancePageViewModel.documentRepository.deleteDocument(device_id: Util.getDeviceUUID() ?? "")
+                isShowDeleteDialog = false
+              }
+            }, label: {
+              Text("Yes")
+            })
+          })
+        }
         Spacer()
       }
     }

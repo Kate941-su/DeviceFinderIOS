@@ -13,10 +13,11 @@ struct TextButton: View {
   let backGroundColor: Color
   var callback: (() -> Void)?
 
-  init(text: String, textColor: Color, backGroundColor: Color) {
+  init(text: String, textColor: Color, backGroundColor: Color, callback: (() -> Void)? = nil) {
     self.text = text
     self.backGroundColor = backGroundColor
     self.textColor = textColor
+    self.callback = callback
   }
   
   @State var isTapped = false
@@ -47,5 +48,7 @@ struct TextButton: View {
     text: "Demo",
     textColor: Color.white,
     backGroundColor: Color.blue
-  )
+  ) {
+    
+  }
 }
