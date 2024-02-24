@@ -59,6 +59,7 @@
 		D24E024E2B863A49004F0FB7 /* LaunchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */; };
 		D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */; };
 		D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */; };
+		D2FD8BAD2B89BF6D00D34468 /* WaitingIndicatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPageViewModel.swift; sourceTree = "<group>"; };
 		D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePageViewModel.swift; sourceTree = "<group>"; };
 		D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPageViewModel.swift; sourceTree = "<group>"; };
+		D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingIndicatorStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 			children = (
 				D233D59A2B823A7600D67CD6 /* TextButton.swift */,
 				D222ED842B82DDCD002352B1 /* MarkerPlace.swift */,
+				D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				D222EDC42B82EF5D002352B1 /* RegisterPageViewModel.swift in Sources */,
 				D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */,
 				D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */,
+				D2FD8BAD2B89BF6D00D34468 /* WaitingIndicatorStyle.swift in Sources */,
 				D233D58F2B821ED800D67CD6 /* Device.swift in Sources */,
 				D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */,
 				D233D5912B8221AE00D67CD6 /* EntrancePage.swift in Sources */,
