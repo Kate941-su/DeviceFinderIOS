@@ -14,12 +14,18 @@ import SwiftUI
 let baseScale: CLLocationDistance = 100
 
 struct FindPage: View {
+  
+  // visibleForTesting
+  let uuid: String = Util.getDeviceUUID() ?? ""
 
   @State private var deviceId: String = ""
   @State private var password: String = ""
 
   // GeoLocationService
   @StateObject private var geoLocationService = GeoLocationService.shared
+  @StateObject private var findPageViewModel = FindPageViewModel()
+  
+  
   @State private var tokenList: Set<AnyCancellable> = []
   @State private var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State private var region = MKCoordinateRegion(
@@ -29,6 +35,13 @@ struct FindPage: View {
   )
 
   @State var isTappedFind: Bool = false
+  
+  
+  init() {
+    // TODO: Only While Debugging
+    deviceId = uuid
+    password = "aaaaaaaa"
+  }
 
   var body: some View {
     NavigationStack {
@@ -50,15 +63,21 @@ struct FindPage: View {
           )
           .onTapGesture {
             print("On Tapped")
-            region = MKCoordinateRegion(
-              center: CLLocationCoordinate2D(
-                latitude: CLLocationDegrees(geoPoint.latitude),
-                longitude: CLLocationDegrees(geoPoint.longitude)),
-              latitudinalMeters: baseScale,
-              longitudinalMeters: baseScale
-            )
-            print($region)
-            isTappedFind = true
+            Task{
+              let findDevice: Device? = await findPageViewModel.findDevice(device_id: deviceId,
+                                                                           device_password: password)
+              // WIP: Nil handling
+              region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(
+                  latitude: CLLocationDegrees(findDevice?.position.latitude),
+                  longitude: CLLocationDegrees(findDevice?.position.longitude)),
+                latitudinalMeters: baseScale,
+                longitudinalMeters: baseScale
+              )
+              print($region)
+              isTappedFind = true
+
+            }
           }
           Spacer()
         }.padding()

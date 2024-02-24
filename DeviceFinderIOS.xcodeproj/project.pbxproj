@@ -58,6 +58,7 @@
 		D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024B2B8623D4004F0FB7 /* Router.swift */; };
 		D24E024E2B863A49004F0FB7 /* LaunchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */; };
 		D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */; };
+		D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		D24E024B2B8623D4004F0FB7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPageViewModel.swift; sourceTree = "<group>"; };
 		D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePageViewModel.swift; sourceTree = "<group>"; };
+		D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 				D222EDC32B82EF5D002352B1 /* RegisterPageViewModel.swift */,
 				D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */,
 				D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */,
+				D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */,
 				D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */,
 				D222EDC62B839B73002352B1 /* DocumentRepository.swift in Sources */,
 				D233D58D2B821E7600D67CD6 /* LaunchPage.swift in Sources */,
