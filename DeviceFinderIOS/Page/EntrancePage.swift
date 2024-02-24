@@ -12,9 +12,9 @@ import SwiftUI
 
 struct EntrancePage: View {
   @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
-  
+
   @StateObject var entrancePageViewModel: EntrancePageViewModel = EntrancePageViewModel()
-  
+
   @State private var path = NavigationPath()
   @State private var isShowDeleteDialog = false
 
@@ -77,7 +77,7 @@ struct EntrancePage: View {
             )
           }
         }
-        Button("state"){
+        Button("state") {
           print("state: \(launchPageViewModel.deviceRegisterState)")
         }
         Spacer()

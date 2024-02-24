@@ -17,41 +17,37 @@ private enum AlertType {
   case invalidByFirebase
   case failedToGetUuid
   case none
-  
+
   var title: String {
-    get {
-      switch self {
-      case .valid:
-        return "Register Succeeded"
-      case .invalidPassword:
-        return "Invalid Password"
-      case .invalidByFirebase:
-        return "Failed to Register Database"
-      case .failedToGetUuid:
-        return "Faild to Get Device ID"
-      case .none:
-        return "Debug None"
-      }
+    switch self {
+    case .valid:
+      return "Register Succeeded"
+    case .invalidPassword:
+      return "Invalid Password"
+    case .invalidByFirebase:
+      return "Failed to Register Database"
+    case .failedToGetUuid:
+      return "Faild to Get Device ID"
+    case .none:
+      return "Debug None"
     }
   }
-  
+
   var description: String {
-    get {
-      switch self {
-      case .valid:
-        return "Your device has registered normally."
-      case .invalidPassword:
-        return "You have to set password at least \(MIN_PASSWORD_LENGTH) characters."
-      case .invalidByFirebase:
-        return "Your device has not registered due to something wrong with network."
-      case .failedToGetUuid:
-        return "Failed to get your device ID."
-      case .none:
-        return "Debug only screen."
-      }
+    switch self {
+    case .valid:
+      return "Your device has registered normally."
+    case .invalidPassword:
+      return "You have to set password at least \(MIN_PASSWORD_LENGTH) characters."
+    case .invalidByFirebase:
+      return "Your device has not registered due to something wrong with network."
+    case .failedToGetUuid:
+      return "Failed to get your device ID."
+    case .none:
+      return "Debug only screen."
     }
   }
-  
+
 }
 
 struct RegisterPage: View {
@@ -139,9 +135,10 @@ struct RegisterPage: View {
             Button("OK") {
               isShowAlert = false
             }
-          }) {
-            Text(alertType.description)
           }
+        ) {
+          Text(alertType.description)
+        }
         Spacer()
       }
       .navigationTitle("Register device")

@@ -13,35 +13,51 @@ import SwiftUI
 // unit: meter(m)
 let baseScale: CLLocationDistance = 100
 
-struct FindPage: View {
+enum FindPageAlertType {
+  case noDevice
+  case wrongPassword
+  case none
   
+  var title: String {
+    get {
+      return "Error"
+    }
+  }
+  
+  var description: String {
+    get {
+      switch self {
+      case .noDevice:
+        return "No device was found."
+      case .wrongPassword:
+        return "Device was registerd. But you tried a wrong password."
+      case .none:
+        return "This alert only can see debug mode only."
+      }
+    }
+  }
+  
+}
+
+struct FindPage: View {
+
   // visibleForTesting
   let uuid: String = Util.getDeviceUUID() ?? ""
 
   @State private var deviceId: String = ""
   @State private var password: String = ""
 
-  // GeoLocationService
-  @StateObject private var geoLocationService = GeoLocationService.shared
   @StateObject private var findPageViewModel = FindPageViewModel()
-  
-  
-  @State private var tokenList: Set<AnyCancellable> = []
-  @State private var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
+
+  @State private var foundDeviceGeoPoint: GeoPoint?
   @State private var region = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 35.0, longitude: 135.0),
     latitudinalMeters: baseScale,
     longitudinalMeters: baseScale
   )
-
-  @State var isTappedFind: Bool = false
-  
-  
-  init() {
-    // TODO: Only While Debugging
-    deviceId = uuid
-    password = "aaaaaaaa"
-  }
+  @State var isShowAlert: Bool = false
+  @State var canShowMap: Bool = false
+  @State var alertType: FindPageAlertType = .none
 
   var body: some View {
     NavigationStack {
@@ -63,32 +79,70 @@ struct FindPage: View {
           )
           .onTapGesture {
             print("On Tapped")
-            Task{
-              let findDevice: Device? = await findPageViewModel.findDevice(device_id: deviceId,
-                                                                           device_password: password)
-              // WIP: Nil handling
-              region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(
-                  latitude: CLLocationDegrees(findDevice?.position.latitude),
-                  longitude: CLLocationDegrees(findDevice?.position.longitude)),
-                latitudinalMeters: baseScale,
-                longitudinalMeters: baseScale
-              )
-              print($region)
-              isTappedFind = true
-
+            Task {
+              // TODO: Implementing Wrong Password
+              if let findDevice: Device = await findPageViewModel.findDevice(
+                device_id: deviceId,
+                device_password: password)
+              {
+                foundDeviceGeoPoint = GeoPoint(latitude: findDevice.position.latitude,
+                                               longitude: findDevice.position.longitude)
+                region = MKCoordinateRegion(
+                  center: CLLocationCoordinate2D(
+                    latitude: CLLocationDegrees(foundDeviceGeoPoint!.latitude),
+                    longitude: CLLocationDegrees(foundDeviceGeoPoint!.longitude)),
+                  latitudinalMeters: baseScale,
+                  longitudinalMeters: baseScale
+                )
+                print($region)
+                canShowMap = true
+              } else {
+                alertType = .noDevice
+                isShowAlert = true
+              }
             }
           }
+          // Debug: Start
+          TextButton(
+            text: "Debug Find",
+            textColor: Color.white,
+            backGroundColor: Color.red
+          )
+          .onTapGesture {
+            Task {
+              if let findDevice: Device = await findPageViewModel.findDevice(
+                device_id: Util.getDeviceUUID()!,
+                device_password: "aaaaaaaa")
+              {
+                foundDeviceGeoPoint = GeoPoint(latitude: findDevice.position.latitude,
+                                               longitude: findDevice.position.longitude)
+                region = MKCoordinateRegion(
+                  center: CLLocationCoordinate2D(
+                    latitude: CLLocationDegrees(foundDeviceGeoPoint!.latitude),
+                    longitude: CLLocationDegrees(foundDeviceGeoPoint!.longitude)),
+                  latitudinalMeters: baseScale,
+                  longitudinalMeters: baseScale
+                )
+                print($region)
+                canShowMap = true
+              } else {
+                // TODO: Implementing Wrong Password
+                alertType = .noDevice
+                isShowAlert = true
+              }
+            }
+          }
+          // Debug: End
           Spacer()
         }.padding()
-        if isTappedFind {
+        if canShowMap {
           // TODO: Debug Only
-          Text("latitude: \(geoPoint.latitude)")
+          Text("latitude: \(foundDeviceGeoPoint!.latitude)")
             .padding()
-          Text("longitude: \(geoPoint.longitude)")
+          Text("longitude: \(foundDeviceGeoPoint!.longitude)")
             .padding()
           // TODO: End Debug Only
-          let place = [MarkerPlace(geoPoint: geoPoint)]
+          let place = [MarkerPlace(geoPoint: foundDeviceGeoPoint!)]
 
           // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
           Map(
@@ -103,34 +157,16 @@ struct FindPage: View {
         }
         Spacer()
       }.navigationTitle("Find")
-    }.onAppear {
-      observeCoordinateUpdates()
-      observeLocationAccessDenied()
-      geoLocationService.requestLocationUpdates()
-    }
-  }
-
-  private func observeCoordinateUpdates() {
-    geoLocationService.coordinatesPublisher.receive(on: DispatchQueue.main)
-      .sink {
-        completion in
-        if case .failure(let error) = completion {
-          print(error)
+    }.alert(
+      "Error", isPresented: $isShowAlert,
+      actions: {
+        Button("OK") {
+          isShowAlert = false
         }
-      } receiveValue: { coordinates in
-        self.geoPoint = GeoPoint(
-          latitude: coordinates.latitude,
-          longitude: coordinates.longitude
-        )
-      }.store(in: &tokenList)
-  }
-
-  private func observeLocationAccessDenied() {
-    geoLocationService.deniedLocationAccessPublisher.receive(on: DispatchQueue.main)
-      .sink {
-        // TODO: Open Settings and Get Permission
-        print("Show some kind of alert to the user")
-      }.store(in: &tokenList)
+      }
+    ) {
+      Text("No device was founded")
+    }
   }
 }
 
