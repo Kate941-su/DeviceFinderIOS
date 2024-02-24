@@ -15,13 +15,13 @@ let baseScale: CLLocationDistance = 100
 
 struct FindPage: View {
 
-  @State var deviceId: String = ""
-  @State var password: String = ""
+  @State private var deviceId: String = ""
+  @State private var password: String = ""
 
   // GeoLocationService
-  @StateObject var geoLocationService = GeoLocationService.shared
-  @State var tokens: Set<AnyCancellable> = []
-  @State var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
+  @StateObject private var geoLocationService = GeoLocationService.shared
+  @State private var tokenList: Set<AnyCancellable> = []
+  @State private var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State private var region = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 35.0, longitude: 135.0),
     latitudinalMeters: baseScale,
@@ -103,15 +103,15 @@ struct FindPage: View {
           latitude: coordinates.latitude,
           longitude: coordinates.longitude
         )
-      }.store(in: &tokens)
+      }.store(in: &tokenList)
   }
 
   private func observeLocationAccessDenied() {
     geoLocationService.deniedLocationAccessPublisher.receive(on: DispatchQueue.main)
       .sink {
-        // TODO: Lost geolocation data error handling
+        // TODO: Open Settings and Get Permission
         print("Show some kind of alert to the user")
-      }.store(in: &tokens)
+      }.store(in: &tokenList)
   }
 }
 

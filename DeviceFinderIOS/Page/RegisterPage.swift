@@ -64,10 +64,10 @@ struct RegisterPage: View {
 
   @StateObject var geoLocationService = GeoLocationService.shared
 
-  @State var password: String = "aaaaaaaa"
-  @State var tokens: Set<AnyCancellable> = []
-  @State var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
-  @State var isShowAlert: Bool = false
+  @State private var password: String = "aaaaaaaa"
+  @State private var tokens: Set<AnyCancellable> = []
+  @State private var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
+  @State private var isShowAlert: Bool = false
   @State fileprivate var alertType: AlertType = .none
 
   var body: some View {
@@ -110,7 +110,6 @@ struct RegisterPage: View {
                 alertType = .invalidPassword
               } else {
                 guard self.deviceUuid != nil else {
-                  assert(false, "Missing Get UUID")
                   alertType = .failedToGetUuid
                   return
                 }
@@ -120,6 +119,7 @@ struct RegisterPage: View {
                   device_password: password)
                 do {
                   try await registerPageViewModel.onTapRegisterButton(device: device)
+                  launchPageViewModel.deviceRegisterState = .registered
                   alertType = .valid
                 } catch {
                   print("\(error)")

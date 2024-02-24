@@ -15,8 +15,8 @@ struct EntrancePage: View {
   
   @StateObject var entrancePageViewModel: EntrancePageViewModel = EntrancePageViewModel()
   
-  @State var path = NavigationPath()
-  @State var isShowDeleteDialog = false
+  @State private var path = NavigationPath()
+  @State private var isShowDeleteDialog = false
 
   var body: some View {
     NavigationStack(path: $path) {
@@ -76,6 +76,9 @@ struct EntrancePage: View {
               "Your device will be out of management and you will not be able to find your device. Are you sure?"
             )
           }
+        }
+        Button("state"){
+          print("state: \(launchPageViewModel.deviceRegisterState)")
         }
         Spacer()
       }
