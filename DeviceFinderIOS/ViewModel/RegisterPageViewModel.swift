@@ -9,7 +9,7 @@ import FirebaseFirestore
 import Foundation
 
 // TODO: Make repository protocol
-class RegisterPageInteractor {
+class RegisterPageViewModel {
   let documentRepository: DocumentRepository = DocumentRepositoryImpl()
   func onTapRegisterButton(device: Device) async throws {
     try await documentRepository.setDocument(device: device)

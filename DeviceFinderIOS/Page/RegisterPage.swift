@@ -11,17 +11,64 @@ import SwiftUI
 
 let MIN_PASSWORD_LENGTH = 8
 
+private enum AlertType {
+  case valid
+  case invalidPassword
+  case invalidByFirebase
+  case failedToGetUuid
+  case none
+  
+  var title: String {
+    get {
+      switch self {
+      case .valid:
+        return "Register Succeeded"
+      case .invalidPassword:
+        return "Invalid Password"
+      case .invalidByFirebase:
+        return "Failed to Register Database"
+      case .failedToGetUuid:
+        return "Faild to Get Device ID"
+      case .none:
+        return "Debug None"
+      }
+    }
+  }
+  
+  var description: String {
+    get {
+      switch self {
+      case .valid:
+        return "Your device has registered normally."
+      case .invalidPassword:
+        return "You have to set password at least \(MIN_PASSWORD_LENGTH) characters."
+      case .invalidByFirebase:
+        return "Your device has not registered due to something wrong with network."
+      case .failedToGetUuid:
+        return "Failed to get your device ID."
+      case .none:
+        return "Debug only screen."
+      }
+    }
+  }
+  
+}
+
 struct RegisterPage: View {
 
   let debugUuid: UUID = UUID()
   let deviceUuid: String? = Util.getDeviceUUID()
-  let registerPageInteractor: RegisterPageInteractor = RegisterPageInteractor()
+  let registerPageViewModel: RegisterPageViewModel = RegisterPageViewModel()
+
+  @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
+
+  @StateObject var geoLocationService = GeoLocationService.shared
 
   @State var password: String = "aaaaaaaa"
   @State var tokens: Set<AnyCancellable> = []
   @State var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State var isShowAlert: Bool = false
-  @StateObject var geoLocationService = GeoLocationService.shared
+  @State fileprivate var alertType: AlertType = .none
 
   var body: some View {
     NavigationStack {
@@ -52,7 +99,6 @@ struct RegisterPage: View {
             .padding()
         }
         HStack {
-          Spacer()
           TextButton(
             text: "Register",
             textColor: Color.white,
@@ -61,10 +107,11 @@ struct RegisterPage: View {
           .onTapGesture {
             Task {
               if password.count < MIN_PASSWORD_LENGTH {
-                isShowAlert = true
+                alertType = .invalidPassword
               } else {
                 guard self.deviceUuid != nil else {
                   assert(false, "Missing Get UUID")
+                  alertType = .failedToGetUuid
                   return
                 }
                 let device = Device(
@@ -72,54 +119,27 @@ struct RegisterPage: View {
                   device_id: Util.getDeviceUUID()!,
                   device_password: password)
                 do {
-                  try await registerPageInteractor.onTapRegisterButton(device: device)
+                  try await registerPageViewModel.onTapRegisterButton(device: device)
+                  alertType = .valid
                 } catch {
-                  // TODO: Error Handling
                   print("\(error)")
+                  alertType = .invalidByFirebase
                 }
               }
+              isShowAlert = true
             }
           }
-          TextButton(
-            text: "Debug",
-            textColor: Color.white,
-            backGroundColor: Color.red
-          )
-          .onTapGesture {
-            Task {
-              if password.count < MIN_PASSWORD_LENGTH {
-                isShowAlert = true
-              } else {
-                guard deviceUuid != nil else {
-                  assert(false, "Missing Get UUID")
-                  return
-                }
-                let device = Device(
-                  position: geoPoint,
-                  device_id: debugUuid.uuidString,
-                  device_password: password)
-                do {
-                  try await registerPageInteractor.onTapRegisterButton(device: device)
-                } catch {
-                  // TODO: Error Handling
-                  print("\(error)")
-                }
-              }
-            }
-          }
-          Spacer()
         }
         .alert(
-          "Password Alert", isPresented: $isShowAlert,
+          alertType.title,
+          isPresented: $isShowAlert,
           actions: {
             Button("OK") {
               isShowAlert = false
             }
-          },
-          message: {
-            Text("You have to set passowrd more than \(MIN_PASSWORD_LENGTH) words.")
+          }) {
+            Text(alertType.description)
           }
-        )
         Spacer()
       }
       .navigationTitle("Register device")

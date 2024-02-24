@@ -34,8 +34,8 @@ class DocumentRepositoryImpl: ObservableObject, DocumentRepository {
     let device = device
     try db.collection("Device").document(device.device_id).setData(from: device)
   }
-  
-  func deleteDocument(device_id: String)async throws {
+
+  func deleteDocument(device_id: String) async throws {
     let db = Firestore.firestore()
     try await db.collection("Device").document(device_id).delete()
   }

@@ -14,7 +14,7 @@ class EntrancePageViewModel: ObservableObject {
     do {
       try await documentRepository.deleteDocument(device_id: device_id)
     } catch {
-     print(error)
+      print(error)
     }
   }
 }

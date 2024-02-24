@@ -19,7 +19,7 @@ struct TextButton: View {
     self.textColor = textColor
     self.callback = callback
   }
-  
+
   @State var isTapped = false
 
   var body: some View {
@@ -31,15 +31,15 @@ struct TextButton: View {
       .foregroundColor(Color.white)
       .background(backGroundColor)
       .clipShape(RoundedRectangle(cornerRadius: 24))
-//      .opacity(isTapped ? 0.6 : 1.0)
-//      .scaleEffect(isTapped ? 1.2 : 1.0)
-//      .pressEvents(onPress:{ withAnimation(.easeIn(duration: 0.2)){
-//        isTapped = true
-//      }},onRelease: {
-//        withAnimation(.easeInOut) {
-//          isTapped = false
-//        }
-//      })
+    //      .opacity(isTapped ? 0.6 : 1.0)
+    //      .scaleEffect(isTapped ? 1.2 : 1.0)
+    //      .pressEvents(onPress:{ withAnimation(.easeIn(duration: 0.2)){
+    //        isTapped = true
+    //      }},onRelease: {
+    //        withAnimation(.easeInOut) {
+    //          isTapped = false
+    //        }
+    //      })
   }
 }
 
@@ -49,6 +49,6 @@ struct TextButton: View {
     textColor: Color.white,
     backGroundColor: Color.blue
   ) {
-    
+
   }
 }

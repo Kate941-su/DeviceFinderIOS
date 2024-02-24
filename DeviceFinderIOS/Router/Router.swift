@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum Route: Int {
   case EntrancePage, FindPage, RegisterPage
 }
