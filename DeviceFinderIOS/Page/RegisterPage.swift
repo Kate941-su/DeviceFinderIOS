@@ -99,6 +99,7 @@ struct RegisterPage: View {
             .padding()
         }
         HStack {
+          Spacer()
           TextButton(
             text: "Register",
             textColor: Color.white,
@@ -129,6 +130,7 @@ struct RegisterPage: View {
               isShowAlert = true
             }
           }
+          Spacer()
         }
         .alert(
           alertType.title,
