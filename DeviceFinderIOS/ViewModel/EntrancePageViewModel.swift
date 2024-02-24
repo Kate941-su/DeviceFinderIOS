@@ -7,14 +7,14 @@
 
 import Foundation
 
-class EntrancePageViewModel: ObservableObject {
-  let documentRepository = DocumentRepositoryImpl()
-  func onTapConfirmDelete(device_id: String) async {
-    // TODO: Error Handling
-    do {
-      try await documentRepository.deleteDocument(device_id: device_id)
-    } catch {
-      print(error)
-    }
-  }
-}
+//class EntrancePageViewModel: ObservableObject {
+//  let documentRepository = DocumentRepositoryImpl()
+//  func onTapConfirmDelete(device_id: String) async {
+//    // TODO: Error Handling
+//    do {
+//      try await documentRepository.deleteDocument(device_id: device_id)
+//    } catch {
+//      print(error)
+//    }
+//  }
+//}

@@ -54,7 +54,7 @@ struct RegisterPage: View {
 
   let debugUuid: UUID = UUID()
   let deviceUuid: String? = Util.getDeviceUUID()
-  let registerPageViewModel: RegisterPageViewModel = RegisterPageViewModel()
+  let documentRepository: DocumentRepository = DocumentRepositoryImpl()
 
   @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
 
@@ -115,9 +115,10 @@ struct RegisterPage: View {
                   device_id: Util.getDeviceUUID()!,
                   device_password: password)
                 do {
-                  try await registerPageViewModel.onTapRegisterButton(device: device)
-                  launchPageViewModel.deviceRegisterState = .registered
-                  alertType = .valid
+                  try await documentRepository.setDocument(device: device) {
+                    launchPageViewModel.deviceRegisterState = .registered
+                    alertType = .valid
+                  }
                 } catch {
                   print("\(error)")
                   alertType = .invalidByFirebase

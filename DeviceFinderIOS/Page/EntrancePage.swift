@@ -11,9 +11,9 @@ import SwiftUI
 // https://qiita.com/yoshi-eng/items/91666637cd7cdd8edf88
 
 struct EntrancePage: View {
+  
+  let documentRepository: DocumentRepository = DocumentRepositoryImpl()
   @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
-
-  @StateObject var entrancePageViewModel: EntrancePageViewModel = EntrancePageViewModel()
 
   @State private var path = NavigationPath()
   @State private var isShowDeleteDialog = false
@@ -24,6 +24,8 @@ struct EntrancePage: View {
       ZStack{
         if isFetching {
           ProgressView()
+            .progressViewStyle(.circular)
+            .scaleEffect(2.0)
         }
         VStack {
           Spacer()
@@ -68,12 +70,18 @@ struct EntrancePage: View {
                 }
                 Button("Yes") {
                   Task {
+                    defer {
+                      isFetching = false
+                      isShowDeleteDialog = false
+                    }
                     // TODO: nil Handling
                     do {
-                      isShowDeleteDialog = false
-                      try await entrancePageViewModel.documentRepository.deleteDocument(
-                        device_id: Util.getDeviceUUID() ?? "")
+                      isFetching = true
+                      try await documentRepository.deleteDocument(
+                        device_id: Util.getDeviceUUID() ?? "", completion: nil)
                       launchPageViewModel.deviceRegisterState = .notRegisterd
+                    } catch {
+                      print(error)
                     }
                   }
                 }

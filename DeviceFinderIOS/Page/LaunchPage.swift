@@ -23,8 +23,8 @@ struct LaunchPage: View {
           // TODO: Firebase Fetch Error Handling
           do {
             let uuid = Util.getDeviceUUID() ?? ""
-            let deviceList = try await documentRepository.getAllDocuments()
-            if deviceList.map { it in it.device_id }.contains(uuid) {
+            let deviceList = try await documentRepository.getAllDocuments(completion: nil)
+            if deviceList.map({ it in it.device_id }).contains(uuid) {
               launchStateViewModel.deviceRegisterState = .registered
             } else {
               launchStateViewModel.deviceRegisterState = .notRegisterd

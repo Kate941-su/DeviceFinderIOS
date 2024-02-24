@@ -13,7 +13,7 @@ class FindPageViewModel: ObservableObject {
 
   func findDevice(device_id: String, device_password: String) async -> Device? {
     do {
-      let deviceDocuments = try await documentRepositoryImpl.getAllDocuments()
+      let deviceDocuments = try await documentRepositoryImpl.getAllDocuments(completion: nil)
       let device = deviceDocuments.first(where: {
         $0.device_id == device_id && $0.device_password == device_password
       })
