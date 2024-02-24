@@ -14,6 +14,9 @@ import Foundation
 #endif
 
 class Util {
+  
+  private init(){}
+  
   static func getDeviceUUID() -> String? {
     #if os(macOS)
       // macOS specific code
