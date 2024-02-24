@@ -7,6 +7,7 @@
 
 import Combine
 import FirebaseFirestore
+import MapKit
 import SwiftUI
 
 let MIN_PASSWORD_LENGTH = 8
@@ -65,6 +66,12 @@ struct RegisterPage: View {
   @State private var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State private var isShowAlert: Bool = false
   @State fileprivate var alertType: AlertType = .none
+  @State private var region = MKCoordinateRegion(
+    center: CLLocationCoordinate2D(latitude: 35.0, longitude: 135.0),
+    latitudinalMeters: MAP_BASE_SCALE,
+    longitudinalMeters: MAP_BASE_SCALE
+  )
+  @State private var isInitialized = false
 
   var body: some View {
     NavigationStack {
@@ -74,15 +81,6 @@ struct RegisterPage: View {
           .bold()
         Text(deviceUuid ?? "Error(nil)")
           .padding()
-
-        //TODO: Debug Only
-        Text("[Debug] Custom UUID For Debug")
-          .padding()
-          .bold()
-        Text(debugUuid.uuidString)
-          .padding()
-        //TODO: End Debug Only
-
         Text("Device Password")
           .padding()
           .bold()
@@ -140,12 +138,38 @@ struct RegisterPage: View {
         ) {
           Text(alertType.description)
         }
-        Spacer()
+        if isInitialized {
+          // TODO: Debug Only
+          Text("Now your Location")
+            .fontWeight(.bold)
+            .padding()
+
+          // Debug Only
+          Text("latitude: \(geoPoint.latitude), longitude: \(geoPoint.longitude)")
+            .padding()
+          // End Debug Only
+
+          let place = [MarkerPlace(geoPoint: geoPoint)]
+          // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
+          Map(
+            coordinateRegion: $region,
+            interactionModes: .all,
+            annotationItems: place
+          ) { place in
+            MapMarker(
+              coordinate: place.location,
+              tint: Color.orange)
+          }
+        } else {
+          Text("Now Loading")
+          Spacer()
+        }
       }
       .navigationTitle("Register device")
       .onAppear {
         observeCoordinateUpdates()
         observeLocationAccessDenied()
+        observeResionUpdates()
         geoLocationService.requestLocationUpdates()
       }
     }
@@ -173,6 +197,19 @@ struct RegisterPage: View {
         // TODO: Lost geolocation data error handling
         print("Show some kind of alert to the user")
       }.store(in: &tokens)
+  }
+  private func observeResionUpdates() {
+    geoLocationService.resionPublisher.first().sink(
+      receiveCompletion: { completion in
+        // TODO: Error Handling
+        print(completion)
+      },
+      receiveValue: { value in
+        region = value
+        print(value)
+        isInitialized = true
+      }
+    ).store(in: &tokens)
   }
 }
 

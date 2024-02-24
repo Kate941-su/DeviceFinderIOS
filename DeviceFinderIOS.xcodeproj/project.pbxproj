@@ -60,6 +60,7 @@
 		D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */; };
 		D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */; };
 		D2FD8BAD2B89BF6D00D34468 /* WaitingIndicatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */; };
+		D2FD8BB02B89F6D600D34468 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BAF2B89F6D600D34468 /* Constans.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePageViewModel.swift; sourceTree = "<group>"; };
 		D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPageViewModel.swift; sourceTree = "<group>"; };
 		D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingIndicatorStyle.swift; sourceTree = "<group>"; };
+		D2FD8BAF2B89F6D600D34468 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		D233D55B2B821D7800D67CD6 /* DeviceFinderIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D2FD8BAE2B89F63400D34468 /* Constant */,
 				D24E024A2B8623C8004F0FB7 /* Router */,
 				D24E02472B861AE4004F0FB7 /* Modifier */,
 				D222EDC22B82E9F2002352B1 /* Repository */,
@@ -312,6 +315,14 @@
 				D24E024B2B8623D4004F0FB7 /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		D2FD8BAE2B89F63400D34468 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				D2FD8BAF2B89F6D600D34468 /* Constans.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +491,7 @@
 			files = (
 				D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */,
 				D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */,
+				D2FD8BB02B89F6D600D34468 /* Constans.swift in Sources */,
 				D222EDC62B839B73002352B1 /* DocumentRepository.swift in Sources */,
 				D233D58D2B821E7600D67CD6 /* LaunchPage.swift in Sources */,
 				D233D5952B82225E00D67CD6 /* RegisterPage.swift in Sources */,

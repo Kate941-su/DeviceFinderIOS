@@ -11,7 +11,7 @@ import SwiftUI
 // https://qiita.com/yoshi-eng/items/91666637cd7cdd8edf88
 
 struct EntrancePage: View {
-  
+
   let documentRepository: DocumentRepository = DocumentRepositoryImpl()
   @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
 
@@ -21,7 +21,7 @@ struct EntrancePage: View {
 
   var body: some View {
     NavigationStack(path: $path) {
-      ZStack{
+      ZStack {
         if isFetching {
           ProgressView()
             .progressViewStyle(.circular)

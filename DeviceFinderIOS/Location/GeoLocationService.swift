@@ -9,6 +9,7 @@ import Combine
 import CoreLocation
 import FirebaseFirestore
 import Foundation
+import MapKit
 
 let POLE_RADIUS: Double = 6356752.314245
 let EQUATOR_RADIUS: Double = 6378137.0
@@ -18,6 +19,8 @@ class GeoLocationService: NSObject, CLLocationManagerDelegate, ObservableObject 
   var coordinatesPublisher = PassthroughSubject<CLLocationCoordinate2D, Error>()
 
   var deniedLocationAccessPublisher = PassthroughSubject<Void, Never>()
+
+  var resionPublisher = PassthroughSubject<MKCoordinateRegion, Never>()
 
   override private init() {
     super.init()
@@ -57,6 +60,12 @@ class GeoLocationService: NSObject, CLLocationManagerDelegate, ObservableObject 
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let location = locations.last else { return }
     coordinatesPublisher.send(location.coordinate)
+    let resion = MKCoordinateRegion(
+      center: CLLocationCoordinate2D(
+        latitude: location.coordinate.latitude,
+        longitude: location.coordinate.longitude),
+      latitudinalMeters: MAP_BASE_SCALE, longitudinalMeters: MAP_BASE_SCALE)
+    resionPublisher.send(resion)
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

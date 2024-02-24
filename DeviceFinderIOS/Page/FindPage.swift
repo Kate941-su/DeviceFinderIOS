@@ -10,33 +10,26 @@ import FirebaseFirestore
 import MapKit
 import SwiftUI
 
-// unit: meter(m)
-let baseScale: CLLocationDistance = 100
-
 enum FindPageAlertType {
   case noDevice
   case wrongPassword
   case none
-  
+
   var title: String {
-    get {
-      return "Error"
-    }
+    return "Error"
   }
-  
+
   var description: String {
-    get {
-      switch self {
-      case .noDevice:
-        return "No device was found."
-      case .wrongPassword:
-        return "Device was registerd. But you tried a wrong password."
-      case .none:
-        return "This alert only can see debug mode only."
-      }
+    switch self {
+    case .noDevice:
+      return "No device was found."
+    case .wrongPassword:
+      return "Device was registerd. But you tried a wrong password."
+    case .none:
+      return "This alert only can see debug mode only."
     }
   }
-  
+
 }
 
 struct FindPage: View {
@@ -51,9 +44,9 @@ struct FindPage: View {
 
   @State private var foundDeviceGeoPoint: GeoPoint?
   @State private var region = MKCoordinateRegion(
-    center: CLLocationCoordinate2D(latitude: 35.0, longitude: 135.0),
-    latitudinalMeters: baseScale,
-    longitudinalMeters: baseScale
+    center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+    latitudinalMeters: MAP_BASE_SCALE,
+    longitudinalMeters: MAP_BASE_SCALE
   )
   @State var isShowAlert: Bool = false
   @State var canShowMap: Bool = false
@@ -85,14 +78,15 @@ struct FindPage: View {
                 device_id: deviceId,
                 device_password: password)
               {
-                foundDeviceGeoPoint = GeoPoint(latitude: findDevice.position.latitude,
-                                               longitude: findDevice.position.longitude)
+                foundDeviceGeoPoint = GeoPoint(
+                  latitude: findDevice.position.latitude,
+                  longitude: findDevice.position.longitude)
                 region = MKCoordinateRegion(
                   center: CLLocationCoordinate2D(
                     latitude: CLLocationDegrees(foundDeviceGeoPoint!.latitude),
                     longitude: CLLocationDegrees(foundDeviceGeoPoint!.longitude)),
-                  latitudinalMeters: baseScale,
-                  longitudinalMeters: baseScale
+                  latitudinalMeters: MAP_BASE_SCALE,
+                  longitudinalMeters: MAP_BASE_SCALE
                 )
                 print($region)
                 canShowMap = true
@@ -114,14 +108,15 @@ struct FindPage: View {
                 device_id: Util.getDeviceUUID()!,
                 device_password: "aaaaaaaa")
               {
-                foundDeviceGeoPoint = GeoPoint(latitude: findDevice.position.latitude,
-                                               longitude: findDevice.position.longitude)
+                foundDeviceGeoPoint = GeoPoint(
+                  latitude: findDevice.position.latitude,
+                  longitude: findDevice.position.longitude)
                 region = MKCoordinateRegion(
                   center: CLLocationCoordinate2D(
                     latitude: CLLocationDegrees(foundDeviceGeoPoint!.latitude),
                     longitude: CLLocationDegrees(foundDeviceGeoPoint!.longitude)),
-                  latitudinalMeters: baseScale,
-                  longitudinalMeters: baseScale
+                  latitudinalMeters: MAP_BASE_SCALE,
+                  longitudinalMeters: MAP_BASE_SCALE
                 )
                 print($region)
                 canShowMap = true
