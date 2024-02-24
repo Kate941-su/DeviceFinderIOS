@@ -31,7 +31,7 @@ struct LaunchPage: View {
               }
               print("Has Registered ?: \(launchStateViewModel.deviceRegisterState)")
             } catch {
-              print(error)
+              print("[Launch Page]: \(error)")
             }
           }
         }

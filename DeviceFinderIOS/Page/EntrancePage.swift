@@ -52,23 +52,22 @@ struct EntrancePage: View {
             print("Delte tapped")
               isShowDeleteDialog = true
           }
-          .alert("Your device will be out of management and you will not be able to find it. Are you all right?",
+          .alert("Confirmation",
                  isPresented: $isShowDeleteDialog, actions: {
-            Button(action: {
+            Button("No", role: .cancel) {
               isShowDeleteDialog = false
-            }, label: {
-              Text("No").bold()
-            })
-            Button(action: {
+            }
+            Button("Yes") {
               Task {
                 // TODO: nil Handling
                 try await entrancePageViewModel.documentRepository.deleteDocument(device_id: Util.getDeviceUUID() ?? "")
+                launchPageViewModel.deviceRegisterState = .notRegisterd
                 isShowDeleteDialog = false
               }
-            }, label: {
-              Text("Yes")
-            })
-          })
+            }
+          }){
+            Text("Your device will be out of management and you will not be able to find your device. Are you sure?")
+          }
         }
         Spacer()
       }
