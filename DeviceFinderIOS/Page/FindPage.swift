@@ -21,12 +21,9 @@ enum FindPageAlertType {
 
   var description: String {
     switch self {
-    case .noDevice:
-      return "No device was found."
-    case .wrongPassword:
-      return "Device was registerd. But you tried a wrong password."
-    case .none:
-      return "This alert only can see debug mode only."
+    case .noDevice: "No device was found."
+    case .wrongPassword: "Device was registerd. But you tried a wrong password."
+    case .none: "This alert only can see debug mode only."
     }
   }
 }
@@ -61,7 +58,6 @@ struct FindPage: View {
   @State var isShowAlert: Bool = false
   @State var mapFetchStatus: MapFetchStatus = .notYet
   @State var alertType: FindPageAlertType = .none
-  @State var path = NavigationPath()
   
   @FocusState private var isDeviceIdFieldFocused: Bool
   @FocusState private var isDevicePasswordFieldFocused: Bool
@@ -105,7 +101,6 @@ struct FindPage: View {
                 )
                 print($region)
                 mapFetchStatus = .ready
-                path.append(0)
               } else {
                 alertType = .noDevice
                 isShowAlert = true

@@ -30,7 +30,7 @@ struct EntrancePage: View {
         VStack {
           Spacer()
           NavigationLink(
-            value: Route.findPageRote, label: {
+            value: Router.findPageRote, label: {
               TextButton(
                 text: "Find",
                 textColor: Color.white,
@@ -42,7 +42,7 @@ struct EntrancePage: View {
           Spacer()
           if launchPageViewModel.deviceRegisterState == .notRegisterd {
             NavigationLink(
-              value: Route.registerPageRote,
+              value: Router.registerPageRote,
               label: {
                 TextButton(
                   text: "Register",
@@ -102,7 +102,7 @@ struct EntrancePage: View {
           Spacer()
         }
         .zIndex(1)
-        .navigationDestination(for: Route.self, destination: { it in
+        .navigationDestination(for: Router.self, destination: { it in
           if it == .findPageRote {
             FindPage()
           } else if it == .registerPageRote {

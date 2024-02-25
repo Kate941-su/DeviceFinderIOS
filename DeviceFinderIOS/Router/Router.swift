@@ -6,7 +6,29 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum Route: Int {
-  case entrancePageRoute, findPageRote, registerPageRote, foundLocationPageRoute
+enum Router: Int {
+  case entrancePageRoute, findPageRoute, registerPageRoute, foundLocationPageRoute
+  
+  var toString: String {
+    get {
+      switch self {
+      case .entrancePageRoute: "Home"
+      case .findPageRoute:  "Find"
+      case .registerPageRoute: "Register"
+      case .foundLocationPageRoute: "FoundLocationPage"
+      }
+    }
+  }
+  
+  @ViewBuilder
+  func Destination() -> some View {
+    switch self {
+    case .entrancePageRoute: EntrancePage()
+    case .findPageRoute: FindPage()
+    case .registerPageRoute: RegisterPage()
+    case .foundLocationPageRoute: FoundLocationPage()
+    }
+  }
 }

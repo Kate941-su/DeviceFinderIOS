@@ -19,31 +19,21 @@ private enum AlertType {
 
   var title: String {
     switch self {
-    case .valid:
-      return "Register Succeeded"
-    case .invalidPassword:
-      return "Invalid Password"
-    case .invalidByFirebase:
-      return "Failed to Register Database"
-    case .failedToGetUuid:
-      return "Faild to Get Device ID"
-    case .none:
-      return "Debug None"
+    case .valid: "Register Succeeded"
+    case .invalidPassword: "Invalid Password"
+    case .invalidByFirebase: "Failed to Register Database"
+    case .failedToGetUuid: "Faild to Get Device ID"
+    case .none: "Debug None"
     }
   }
 
   var description: String {
     switch self {
-    case .valid:
-      return "Success to register your device.\n Please remember DeviceID and password you set."
-    case .invalidPassword:
-      return "You have to set password at least \(MIN_PASSWORD_LENGTH) characters."
-    case .invalidByFirebase:
-      return "Your device has not registered due to something wrong with network."
-    case .failedToGetUuid:
-      return "Failed to get your device ID."
-    case .none:
-      return "Debug only screen."
+    case .valid: "Success to register your device.\n Please remember DeviceID and password you set."
+    case .invalidPassword: "You have to set password at least \(MIN_PASSWORD_LENGTH) characters."
+    case .invalidByFirebase: "Your device has not registered due to something wrong with network."
+    case .failedToGetUuid: "Failed to get your device ID."
+    case .none: "Debug only screen."
     }
   }
 

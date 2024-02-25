@@ -93,8 +93,8 @@
             filePath = "DeviceFinderIOS/Page/RegisterPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "observeResionUpdates()"
             landmarkType = "7">
          </BreakpointContent>
