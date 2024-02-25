@@ -29,7 +29,12 @@ enum FindPageAlertType {
       return "This alert only can see debug mode only."
     }
   }
+}
 
+enum MapFetchStatus {
+  case notYet
+  case loading
+  case ready
 }
 
 struct FindPage: View {
@@ -54,7 +59,7 @@ struct FindPage: View {
     longitudinalMeters: MAP_BASE_SCALE
   )
   @State var isShowAlert: Bool = false
-  @State var canShowMap: Bool = false
+  @State var mapFetchStatus: MapFetchStatus = .notYet
   @State var alertType: FindPageAlertType = .none
   
   @FocusState private var isDeviceIdFieldFocused: Bool
@@ -82,6 +87,7 @@ struct FindPage: View {
             disabled: isDeviceIdFieldFocused || isDevicePasswordFieldFocused
           ) {
             Task {
+              mapFetchStatus = .loading
               // TODO: Implementing Wrong Password
               if let findDevice: Device = await findPageViewModel.findDevice(
                 device_id: deviceId,
@@ -98,48 +104,18 @@ struct FindPage: View {
                   longitudinalMeters: MAP_BASE_SCALE
                 )
                 print($region)
-                canShowMap = true
+                mapFetchStatus = .ready
               } else {
                 alertType = .noDevice
                 isShowAlert = true
+                mapFetchStatus = .notYet
               }
             }
           }
-          // Debug: Start
-          TextButton(
-            text: "Debug Find",
-            textColor: Color.white,
-            backGroundColor: Color.red
-          )
-          .onTapGesture {
-            Task {
-              if let findDevice: Device = await findPageViewModel.findDevice(
-                device_id: Util.getDeviceUUID()!,
-                device_password: "aaaaaaaa")
-              {
-                foundDeviceGeoPoint = GeoPoint(
-                  latitude: findDevice.position.latitude,
-                  longitude: findDevice.position.longitude)
-                region = MKCoordinateRegion(
-                  center: CLLocationCoordinate2D(
-                    latitude: CLLocationDegrees(foundDeviceGeoPoint!.latitude),
-                    longitude: CLLocationDegrees(foundDeviceGeoPoint!.longitude)),
-                  latitudinalMeters: MAP_BASE_SCALE,
-                  longitudinalMeters: MAP_BASE_SCALE
-                )
-                print($region)
-                canShowMap = true
-              } else {
-                // TODO: Implementing Wrong Password
-                alertType = .noDevice
-                isShowAlert = true
-              }
-            }
-          }
-          // Debug: End
           Spacer()
         }.padding()
-        if canShowMap {
+        switch mapFetchStatus {
+        case .ready, .notYet:
           // TODO: Debug Only
           Text("latitude: \(foundDeviceGeoPoint!.latitude)")
             .padding()
@@ -157,6 +133,14 @@ struct FindPage: View {
             MapMarker(
               coordinate: place.location,
               tint: Color.orange)
+          }
+        case .loading:
+          HStack(alignment: .center) {
+            Spacer()
+            ProgressView()
+              .progressViewStyle(.circular)
+              .scaleEffect(2.0)
+            Spacer()
           }
         }
         Spacer()
