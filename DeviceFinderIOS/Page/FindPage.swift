@@ -61,12 +61,13 @@ struct FindPage: View {
   @State var isShowAlert: Bool = false
   @State var mapFetchStatus: MapFetchStatus = .notYet
   @State var alertType: FindPageAlertType = .none
+  @State var path = NavigationPath()
   
   @FocusState private var isDeviceIdFieldFocused: Bool
   @FocusState private var isDevicePasswordFieldFocused: Bool
 
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $path) {
       VStack(alignment: .leading) {
         Text("Device ID").padding()
         TextField("Enter Device ID", text: $deviceId)
@@ -105,6 +106,7 @@ struct FindPage: View {
                 )
                 print($region)
                 mapFetchStatus = .ready
+                path.append(0)
               } else {
                 alertType = .noDevice
                 isShowAlert = true
@@ -115,25 +117,8 @@ struct FindPage: View {
           Spacer()
         }.padding()
         switch mapFetchStatus {
-        case .ready, .notYet:
-          // TODO: Debug Only
-          Text("latitude: \(foundDeviceGeoPoint!.latitude)")
-            .padding()
-          Text("longitude: \(foundDeviceGeoPoint!.longitude)")
-            .padding()
-          // TODO: End Debug Only
-          let place = [MarkerPlace(geoPoint: foundDeviceGeoPoint!)]
-
-          // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
-          Map(
-            coordinateRegion: $region,
-            interactionModes: .all,
-            annotationItems: place
-          ) { place in
-            MapMarker(
-              coordinate: place.location,
-              tint: Color.orange)
-          }
+        case .ready:
+          Text("TODO: Navigation")
         case .loading:
           HStack(alignment: .center) {
             Spacer()
@@ -142,10 +127,17 @@ struct FindPage: View {
               .scaleEffect(2.0)
             Spacer()
           }
+        case .notYet:
+          Text("Please fill in the textfield.")
         }
         Spacer()
-      }.navigationTitle("Find")
-    }.alert(
+      }
+      .navigationTitle("Find")
+      .navigationDestination(for: Int.self, destination: { _ in
+        FoundLocationPage()
+      })
+    }
+    .alert(
       "Error", isPresented: $isShowAlert,
       actions: {
         Button("OK") {

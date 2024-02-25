@@ -59,6 +59,7 @@
 		D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024B2B8623D4004F0FB7 /* Router.swift */; };
 		D24E024E2B863A49004F0FB7 /* LaunchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */; };
 		D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */; };
+		D277543F2B8B17C400EB49D9 /* FoundLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D277543E2B8B17C400EB49D9 /* FoundLocationPage.swift */; };
 		D2A0BC5C2B8AFB3D00092330 /* DbFactoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0BC5B2B8AFB3D00092330 /* DbFactoryPage.swift */; };
 		D2A0BC5E2B8B093A00092330 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0BC5D2B8B093A00092330 /* ButtonComponent.swift */; };
 		D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */; };
@@ -114,6 +115,7 @@
 		D24E024B2B8623D4004F0FB7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPageViewModel.swift; sourceTree = "<group>"; };
 		D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePageViewModel.swift; sourceTree = "<group>"; };
+		D277543E2B8B17C400EB49D9 /* FoundLocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundLocationPage.swift; sourceTree = "<group>"; };
 		D2A0BC5B2B8AFB3D00092330 /* DbFactoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbFactoryPage.swift; sourceTree = "<group>"; };
 		D2A0BC5D2B8B093A00092330 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPageViewModel.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				D233D5902B8221AE00D67CD6 /* EntrancePage.swift */,
 				D233D5922B82224E00D67CD6 /* FindPage.swift */,
 				D233D5942B82225E00D67CD6 /* RegisterPage.swift */,
+				D277543E2B8B17C400EB49D9 /* FoundLocationPage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */,
 				D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */,
 				D2FD8BAD2B89BF6D00D34468 /* WaitingIndicatorStyle.swift in Sources */,
+				D277543F2B8B17C400EB49D9 /* FoundLocationPage.swift in Sources */,
 				D233D58F2B821ED800D67CD6 /* Device.swift in Sources */,
 				D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */,
 				D233D5912B8221AE00D67CD6 /* EntrancePage.swift in Sources */,
