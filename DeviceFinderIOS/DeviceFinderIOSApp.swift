@@ -29,7 +29,12 @@ struct DeviceFinderIOSApp: App {
   
   var body: some Scene {
     WindowGroup {
-      LaunchPage().environmentObject(launchPageViewModel)
+      // You Can Turn On By Editting Arguments in The Scheme
+      if let factoryMode = ProcessInfo.processInfo.environment["DB_FACTORY_MODE"] {
+        DbFactoryPage()
+      } else {
+        LaunchPage().environmentObject(launchPageViewModel)
+      }
     }
     .onChange(of: phase) { newPhase in
       switch newPhase {

@@ -77,7 +77,7 @@
          <EnvironmentVariable
             key = "DB_FACTORY_MODE"
             value = "ON"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
