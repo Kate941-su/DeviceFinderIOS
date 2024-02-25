@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D216667A2B8ABB4E00286B28 /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21666792B8ABB4E00286B28 /* BackgroundTask.swift */; };
 		D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222ED842B82DDCD002352B1 /* MarkerPlace.swift */; };
 		D222ED872B82E2E3002352B1 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D222ED862B82E2E3002352B1 /* Validator.swift */; };
 		D222ED8A2B82E7CE002352B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D222ED892B82E7CE002352B1 /* GoogleService-Info.plist */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D21666792B8ABB4E00286B28 /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		D222ED832B82D696002352B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D222ED842B82DDCD002352B1 /* MarkerPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerPlace.swift; sourceTree = "<group>"; };
 		D222ED862B82E2E3002352B1 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -167,6 +169,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D21666782B8ABB1D00286B28 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				D21666792B8ABB4E00286B28 /* BackgroundTask.swift */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
 		D222ED882B82E2E9002352B1 /* Validator */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +217,7 @@
 		D233D55B2B821D7800D67CD6 /* DeviceFinderIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D21666782B8ABB1D00286B28 /* Background */,
 				D2FD8BAE2B89F63400D34468 /* Constant */,
 				D24E024A2B8623C8004F0FB7 /* Router */,
 				D24E02472B861AE4004F0FB7 /* Modifier */,
@@ -492,6 +503,7 @@
 				D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */,
 				D233D5982B82288D00D67CD6 /* GeoLocationService.swift in Sources */,
 				D2FD8BB02B89F6D600D34468 /* Constans.swift in Sources */,
+				D216667A2B8ABB4E00286B28 /* BackgroundTask.swift in Sources */,
 				D222EDC62B839B73002352B1 /* DocumentRepository.swift in Sources */,
 				D233D58D2B821E7600D67CD6 /* LaunchPage.swift in Sources */,
 				D233D5952B82225E00D67CD6 /* RegisterPage.swift in Sources */,

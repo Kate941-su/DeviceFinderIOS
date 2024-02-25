@@ -10,3 +10,5 @@ import MapKit
 
 // Base Unit = (m) (metor)
 let MAP_BASE_SCALE: CLLocationDistance = 100
+
+let MIN_PASSWORD_LENGTH = 8

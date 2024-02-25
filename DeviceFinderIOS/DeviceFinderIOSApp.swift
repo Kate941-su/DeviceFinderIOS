@@ -24,10 +24,21 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct DeviceFinderIOSApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  @Environment(\.scenePhase) private var phase
+  
   var body: some Scene {
     WindowGroup {
       LaunchPage()
         .environmentObject(LaunchPageViewModel())
+    }
+    .onChange(of: phase) { newPhase in
+      switch newPhase {
+      case .background: scheduleAppRefresh()
+      default: break
+      }
+    }
+    .backgroundTask(.appRefresh(GEOLOCATION_REFRESH_TASK_IDENTIFIRE)) {
+      print("TODO: Write your code you want to execute")
     }
   }
 }

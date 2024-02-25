@@ -4,6 +4,10 @@
 <dict>
 	<key></key>
 	<string></string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>If you premit background task mode, you can update location data even this app is working background.</string>
+	</array>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -24,6 +28,11 @@
 		<string>MKDirectionsModeOther</string>
 		<string>MKDirectionsModePedestrian</string>
 		<string>MKDirectionsModePlane</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
 	</array>
 </dict>
 </plist>

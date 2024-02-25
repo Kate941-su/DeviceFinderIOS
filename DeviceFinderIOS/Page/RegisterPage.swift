@@ -10,8 +10,6 @@ import FirebaseFirestore
 import MapKit
 import SwiftUI
 
-let MIN_PASSWORD_LENGTH = 8
-
 private enum AlertType {
   case valid
   case invalidPassword
@@ -37,7 +35,7 @@ private enum AlertType {
   var description: String {
     switch self {
     case .valid:
-      return "Your device has registered normally."
+      return "Success to register your device.\n Please remember DeviceID and password you set."
     case .invalidPassword:
       return "You have to set password at least \(MIN_PASSWORD_LENGTH) characters."
     case .invalidByFirebase:
@@ -84,6 +82,7 @@ struct RegisterPage: View {
         Text("Device Password")
           .padding()
           .bold()
+        // TODO: Secure Field
         TextField("Enter Device Password", text: $password)
           .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
           .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
@@ -161,6 +160,7 @@ struct RegisterPage: View {
               tint: Color.orange)
           }
         } else {
+          // TODO: Design Better
           Text("Now Loading")
           Spacer()
         }
