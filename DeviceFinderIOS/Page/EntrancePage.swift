@@ -51,7 +51,7 @@ struct EntrancePage: View {
                   backGroundColor: Color.green)
               }
             )
-          } else {
+          } else if (launchPageViewModel.deviceRegisterState == .registered) {
             TextButton(
               text: "Delete",
               textColor: Color.white,
@@ -91,10 +91,18 @@ struct EntrancePage: View {
                 "Your device will be out of management and you will not be able to find your device. Are you sure?"
               )
             }
+            Spacer()
+            Divider()
+            Spacer()
+            TextButton(
+              text: "Update Location",
+              textColor: Color.white,
+              backGroundColor: Color.orange
+            )
           }
           Spacer()
         }.zIndex(1)
-      }
+      }.environmentObject(launchPageViewModel)
     }
   }
 }

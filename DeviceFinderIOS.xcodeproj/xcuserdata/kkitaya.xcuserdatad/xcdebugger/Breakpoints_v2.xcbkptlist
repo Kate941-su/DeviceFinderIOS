@@ -93,26 +93,10 @@
             filePath = "DeviceFinderIOS/Page/RegisterPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "observeResionUpdates()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "555BA8FF-A423-4731-8C84-73183C6D90ED"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DeviceFinderIOS/DeviceFinderIOSApp.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "body"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -125,8 +109,8 @@
             filePath = "DeviceFinderIOS/Page/LaunchPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -141,8 +125,8 @@
             filePath = "DeviceFinderIOS/Page/LaunchPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -182,15 +166,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EA6CB0EA-9F33-464D-85A2-21A5CC63FA31"
+            uuid = "45E68DDA-9445-453B-A1EA-E477B926902C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeviceFinderIOS/DeviceFinderIOSApp.swift"
+            filePath = "DeviceFinderIOS/Page/LaunchPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -198,15 +182,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BEC121CE-B437-42D6-99A4-26B716A361D0"
+            uuid = "8A73C113-1822-41B4-8491-269980C41640"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeviceFinderIOS/DeviceFinderIOSApp.swift"
+            filePath = "DeviceFinderIOS/Page/EntrancePage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -214,64 +198,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E44D9196-C401-409C-A2F1-109D5ADFD1B0"
+            uuid = "AFA1377B-401B-424B-8F37-23EDD3A38F56"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeviceFinderIOS/DeviceFinderIOSApp.swift"
+            filePath = "DeviceFinderIOS/Page/EntrancePage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "E44D9196-C401-409C-A2F1-109D5ADFD1B0 - 2f7ef14871cebf50"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DeviceFinderIOS.DeviceFinderIOSApp.body.getter : some"
-                  moduleName = "DeviceFinderIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kkitaya/Desktop/DeviceFinderIOS/DeviceFinderIOS/DeviceFinderIOSApp.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "1128">
-               </Location>
-               <Location
-                  uuid = "E44D9196-C401-409C-A2F1-109D5ADFD1B0 - 39b5eb9987741c7a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 @Sendable () async -&gt; () in DeviceFinderIOS.DeviceFinderIOSApp.body.getter : some"
-                  moduleName = "DeviceFinderIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kkitaya/Desktop/DeviceFinderIOS/DeviceFinderIOS/DeviceFinderIOSApp.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "8">
-               </Location>
-               <Location
-                  uuid = "E44D9196-C401-409C-A2F1-109D5ADFD1B0 - 997e8fe41465301c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in DeviceFinderIOS.DeviceFinderIOSApp.body.getter : some"
-                  moduleName = "DeviceFinderIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kkitaya/Desktop/DeviceFinderIOS/DeviceFinderIOS/DeviceFinderIOSApp.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB18A2D4-F7EE-4111-80E9-A332255DA62F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DeviceFinderIOS/Page/LaunchPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

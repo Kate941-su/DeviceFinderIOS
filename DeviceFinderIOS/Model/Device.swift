@@ -37,8 +37,9 @@ extension SHA256.Digest {
   }
 }
 
-extension SHA256.Digest {
-  //  public func toString() -> String {
-  ////    return self.map{String(format: "%02hhx")}.joined()
-  //  }
+extension Device {
+  func setDummydevice(geoPoint: GeoPoint, device_id: String, device_password: String) -> Device {
+      let dummyDevice = Device(position: geoPoint, device_id: device_id, device_password: device_password)
+      return dummyDevice
+  }
 }

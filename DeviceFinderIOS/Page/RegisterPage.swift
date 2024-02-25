@@ -98,30 +98,33 @@ struct RegisterPage: View {
             textColor: Color.white,
             backGroundColor: Color.blue
           )
+          .opacity(isInitialized ? 1.0 : 0.5)
           .onTapGesture {
-            Task {
-              if password.count < MIN_PASSWORD_LENGTH {
-                alertType = .invalidPassword
-              } else {
-                guard self.deviceUuid != nil else {
-                  alertType = .failedToGetUuid
-                  return
-                }
-                let device = Device(
-                  position: geoPoint,
-                  device_id: Util.getDeviceUUID()!,
-                  device_password: password)
-                do {
-                  try await documentRepository.setDocument(device: device) {
-                    launchPageViewModel.deviceRegisterState = .registered
-                    alertType = .valid
+            if isInitialized {
+              Task {
+                if password.count < MIN_PASSWORD_LENGTH {
+                  alertType = .invalidPassword
+                } else {
+                  guard self.deviceUuid != nil else {
+                    alertType = .failedToGetUuid
+                    return
                   }
-                } catch {
-                  print("\(error)")
-                  alertType = .invalidByFirebase
+                  let device = Device(
+                    position: geoPoint,
+                    device_id: Util.getDeviceUUID()!,
+                    device_password: password)
+                  do {
+                    try await documentRepository.setDocument(device: device) {
+                      launchPageViewModel.deviceRegisterState = .registered
+                      alertType = .valid
+                    }
+                  } catch {
+                    print("\(error)")
+                    alertType = .invalidByFirebase
+                  }
                 }
+                isShowAlert = true
               }
-              isShowAlert = true
             }
           }
           Spacer()
@@ -161,7 +164,14 @@ struct RegisterPage: View {
           }
         } else {
           // TODO: Design Better
-          Text("Now Loading")
+          Spacer()
+          HStack(alignment: .center) {
+            Spacer()
+            ProgressView()
+              .progressViewStyle(.circular)
+              .scaleEffect(2.0)
+            Spacer()
+          }
           Spacer()
         }
       }
@@ -172,6 +182,7 @@ struct RegisterPage: View {
         observeResionUpdates()
         geoLocationService.requestLocationUpdates()
       }
+      .environmentObject(launchPageViewModel)
     }
   }
 

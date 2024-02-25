@@ -25,11 +25,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct DeviceFinderIOSApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @Environment(\.scenePhase) private var phase
+  @StateObject private var launchPageViewModel = LaunchPageViewModel()
   
   var body: some Scene {
     WindowGroup {
-      LaunchPage()
-        .environmentObject(LaunchPageViewModel())
+      LaunchPage().environmentObject(launchPageViewModel)
     }
     .onChange(of: phase) { newPhase in
       switch newPhase {
