@@ -60,6 +60,7 @@
 		D24E024E2B863A49004F0FB7 /* LaunchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */; };
 		D25495C22B8824F600CCDECE /* EntrancePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */; };
 		D2A0BC5C2B8AFB3D00092330 /* DbFactoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0BC5B2B8AFB3D00092330 /* DbFactoryPage.swift */; };
+		D2A0BC5E2B8B093A00092330 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0BC5D2B8B093A00092330 /* ButtonComponent.swift */; };
 		D2FD8BA92B898C1E00D34468 /* FindPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */; };
 		D2FD8BAD2B89BF6D00D34468 /* WaitingIndicatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */; };
 		D2FD8BB02B89F6D600D34468 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD8BAF2B89F6D600D34468 /* Constans.swift */; };
@@ -114,6 +115,7 @@
 		D24E024D2B863A49004F0FB7 /* LaunchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPageViewModel.swift; sourceTree = "<group>"; };
 		D25495C12B8824F600CCDECE /* EntrancePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePageViewModel.swift; sourceTree = "<group>"; };
 		D2A0BC5B2B8AFB3D00092330 /* DbFactoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbFactoryPage.swift; sourceTree = "<group>"; };
+		D2A0BC5D2B8B093A00092330 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		D2FD8BA82B898C1E00D34468 /* FindPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPageViewModel.swift; sourceTree = "<group>"; };
 		D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingIndicatorStyle.swift; sourceTree = "<group>"; };
 		D2FD8BAF2B89F6D600D34468 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				D233D59A2B823A7600D67CD6 /* TextButton.swift */,
 				D222ED842B82DDCD002352B1 /* MarkerPlace.swift */,
 				D2FD8BAC2B89BF6D00D34468 /* WaitingIndicatorStyle.swift */,
+				D2A0BC5D2B8B093A00092330 /* ButtonComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				D24E024E2B863A49004F0FB7 /* LaunchPageViewModel.swift in Sources */,
 				D233D59B2B823A7600D67CD6 /* TextButton.swift in Sources */,
 				D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */,
+				D2A0BC5E2B8B093A00092330 /* ButtonComponent.swift in Sources */,
 				D222EDC42B82EF5D002352B1 /* RegisterPageViewModel.swift in Sources */,
 				D222ED852B82DDCD002352B1 /* MarkerPlace.swift in Sources */,
 				D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */,
@@ -689,6 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeviceFinderIOS/DeviceFinderIOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DeviceFinderIOS/Preview Content\"";
@@ -715,6 +720,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaitokitaya.DeviceFinderIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -729,6 +735,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DeviceFinderIOS/DeviceFinderIOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DeviceFinderIOS/Preview Content\"";
@@ -755,6 +762,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaitokitaya.DeviceFinderIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;

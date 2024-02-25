@@ -36,12 +36,17 @@ struct FindPage: View {
 
   // visibleForTesting
   let uuid: String = Util.getDeviceUUID() ?? ""
+  
+  let initialRegion = MKCoordinateRegion(
+    center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+    latitudinalMeters: MAP_BASE_SCALE,
+    longitudinalMeters: MAP_BASE_SCALE
+  )
 
   @State private var deviceId: String = ""
   @State private var password: String = ""
 
   @StateObject private var findPageViewModel = FindPageViewModel()
-
   @State private var foundDeviceGeoPoint: GeoPoint?
   @State private var region = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
@@ -51,6 +56,9 @@ struct FindPage: View {
   @State var isShowAlert: Bool = false
   @State var canShowMap: Bool = false
   @State var alertType: FindPageAlertType = .none
+  
+  @FocusState private var isDeviceIdFieldFocused: Bool
+  @FocusState private var isDevicePasswordFieldFocused: Bool
 
   var body: some View {
     NavigationStack {
@@ -59,19 +67,20 @@ struct FindPage: View {
         TextField("Enter Device ID", text: $deviceId)
           .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
           .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
+          .focused($isDeviceIdFieldFocused)
         Text("Device Password").padding()
         TextField("Enter Device Password", text: $password)
           .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
           .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
+          .focused($isDevicePasswordFieldFocused)
         HStack {
           Spacer()
-          TextButton(
+          ButtonComponent(
             text: "Find",
             textColor: Color.white,
-            backGroundColor: Color.blue
-          )
-          .onTapGesture {
-            print("On Tapped")
+            backGroundColor: Color.blue,
+            disabled: isDeviceIdFieldFocused || isDevicePasswordFieldFocused
+          ) {
             Task {
               // TODO: Implementing Wrong Password
               if let findDevice: Device = await findPageViewModel.findDevice(
