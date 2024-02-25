@@ -67,7 +67,6 @@ struct FindPage: View {
   @FocusState private var isDevicePasswordFieldFocused: Bool
 
   var body: some View {
-    NavigationStack(path: $path) {
       VStack(alignment: .leading) {
         Text("Device ID").padding()
         TextField("Enter Device ID", text: $deviceId)
@@ -136,7 +135,6 @@ struct FindPage: View {
       .navigationDestination(for: Int.self, destination: { _ in
         FoundLocationPage()
       })
-    }
     .alert(
       "Error", isPresented: $isShowAlert,
       actions: {

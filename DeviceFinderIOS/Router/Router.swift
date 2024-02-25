@@ -8,5 +8,5 @@
 import Foundation
 
 enum Route: Int {
-  case EntrancePage, FindPage, RegisterPage, FoundLocationPage
+  case entrancePageRoute, findPageRote, registerPageRote, foundLocationPageRoute
 }

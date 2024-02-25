@@ -72,7 +72,6 @@ struct RegisterPage: View {
   @State private var isInitialized = false
 
   var body: some View {
-    NavigationStack {
       VStack(alignment: .leading) {
         Text("Device ID")
           .padding()
@@ -184,7 +183,6 @@ struct RegisterPage: View {
       }
       .environmentObject(launchPageViewModel)
     }
-  }
 
   // TODO: Getting rid of deprecating of FindPage
   private func observeCoordinateUpdates() {
