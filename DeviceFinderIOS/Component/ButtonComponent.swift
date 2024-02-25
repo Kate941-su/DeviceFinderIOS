@@ -14,8 +14,10 @@ struct ButtonComponent: View {
   var disabled: Bool = false
   var callback: (() -> Void)?
 
-  
-  init(text: String, textColor: Color, backGroundColor: Color, disabled: Bool = false, callback: (() -> Void)? = nil) {
+  init(
+    text: String, textColor: Color, backGroundColor: Color, disabled: Bool = false,
+    callback: (() -> Void)? = nil
+  ) {
     self.text = text
     self.backGroundColor = backGroundColor
     self.textColor = textColor
@@ -27,18 +29,18 @@ struct ButtonComponent: View {
 
   var body: some View {
     Button(text) {
-      guard let callback else {return}
+      guard let callback else { return }
       callback()
     }
-      .disabled(disabled)
-      .multilineTextAlignment(.center)
-      .bold()
-      .padding()
-      .frame(width: 100, height: 50, alignment: .center)
-      .foregroundColor(Color.white)
-      .background(backGroundColor)
-      .clipShape(RoundedRectangle(cornerRadius: 24))
-      .opacity(disabled ? 0.5 : 1.0)
+    .disabled(disabled)
+    .multilineTextAlignment(.center)
+    .bold()
+    .padding()
+    .frame(width: 100, height: 50, alignment: .center)
+    .foregroundColor(Color.white)
+    .background(backGroundColor)
+    .clipShape(RoundedRectangle(cornerRadius: 24))
+    .opacity(disabled ? 0.5 : 1.0)
   }
 }
 
@@ -52,4 +54,3 @@ struct ButtonComponent: View {
     print("Button Tapped")
   }
 }
-

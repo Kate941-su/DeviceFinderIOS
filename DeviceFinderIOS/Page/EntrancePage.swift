@@ -13,7 +13,7 @@ import SwiftUI
 struct EntrancePage: View {
 
   let documentRepository: DocumentRepository = DocumentRepositoryImpl()
-  @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
+  @EnvironmentObject var launchState: LaunchState
 
   @State private var path = NavigationPath()
   @State private var isShowDeleteDialog = false
@@ -30,7 +30,8 @@ struct EntrancePage: View {
         VStack {
           Spacer()
           NavigationLink(
-            value: Router.findPageRote, label: {
+            value: Router.findPageRoute,
+            label: {
               TextButton(
                 text: "Find",
                 textColor: Color.white,
@@ -40,9 +41,9 @@ struct EntrancePage: View {
           Spacer()
           Divider()
           Spacer()
-          if launchPageViewModel.deviceRegisterState == .notRegisterd {
+          if launchState.state == .notRegisterd {
             NavigationLink(
-              value: Router.registerPageRote,
+              value: Router.registerPageRoute,
               label: {
                 TextButton(
                   text: "Register",
@@ -50,7 +51,7 @@ struct EntrancePage: View {
                   backGroundColor: Color.green)
               }
             )
-          } else if (launchPageViewModel.deviceRegisterState == .registered) {
+          } else if launchState.state == .registered {
             TextButton(
               text: "Delete",
               textColor: Color.white,
@@ -78,7 +79,7 @@ struct EntrancePage: View {
                       isFetching = true
                       try await documentRepository.deleteDocument(
                         device_id: Util.getDeviceUUID() ?? "", completion: nil)
-                      launchPageViewModel.deviceRegisterState = .notRegisterd
+                      launchState.state = .notRegisterd
                     } catch {
                       print(error)
                     }
@@ -102,15 +103,16 @@ struct EntrancePage: View {
           Spacer()
         }
         .zIndex(1)
-        .navigationDestination(for: Router.self, destination: { it in
-          if it == .findPageRote {
-            FindPage()
-          } else if it == .registerPageRote {
-            RegisterPage()
-          }
-        })
+        //TODO: Navigation Item Text (https://stackoverflow.com/questions/59820540/default-text-for-back-button-in-navigationview-in-swiftui)
+        .navigationDestination(
+          for: Router.self,
+          destination: { it in
+            it.Destination()
+              .navigationTitle(it.title)
+              .navigationBarTitleDisplayMode(.inline)
+          })
       }
-      .environmentObject(launchPageViewModel)
+      .environmentObject(launchState)
     }
   }
 }

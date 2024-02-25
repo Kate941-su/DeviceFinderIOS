@@ -7,19 +7,29 @@
 
 import SwiftUI
 
+enum DeviceRegisterState {
+  case pending
+  case notRegisterd
+  case registered
+}
+
+class LaunchState: ObservableObject {
+  @Published var state: DeviceRegisterState = .pending
+}
+
 struct LaunchPage: View {
   let documentRepository = DocumentRepositoryImpl()
-  @EnvironmentObject private var launchPageViewModel: LaunchPageViewModel
-  
+  @EnvironmentObject private var launchState: LaunchState
+
   var body: some View {
-    if launchPageViewModel.deviceRegisterState == .pending {
+    if launchState.state == .pending {
       VStack(alignment: .center) {
         Image(.splash)
           .resizable()
           .aspectRatio(contentMode: .fit)
           .padding()
       }
-      .environmentObject(launchPageViewModel)
+      .environmentObject(launchState)
       .onAppear {
         Task {
           // TODO: Firebase Fetch Error Handling
@@ -27,11 +37,10 @@ struct LaunchPage: View {
             let uuid = Util.getDeviceUUID() ?? ""
             let deviceList = try await documentRepository.getAllDocuments(completion: nil)
             if deviceList.map({ it in it.device_id }).contains(uuid) {
-              launchPageViewModel.deviceRegisterState = .registered
+              launchState.state = .registered
             } else {
-              launchPageViewModel.deviceRegisterState = .notRegisterd
+              launchState.state = .notRegisterd
             }
-            print("Has Registered ?: \(launchPageViewModel.deviceRegisterState)")
           } catch {
             print("[Launch Page]: \(error)")
           }

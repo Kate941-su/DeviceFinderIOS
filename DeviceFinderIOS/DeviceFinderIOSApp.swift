@@ -25,8 +25,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct DeviceFinderIOSApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @Environment(\.scenePhase) private var phase
-  @StateObject private var launchPageViewModel = LaunchPageViewModel()
-  
+  @StateObject private var launchState = LaunchState()
+
   var body: some Scene {
     WindowGroup {
       /// You Can Turn On By Editting Arguments in The Scheme
@@ -34,7 +34,7 @@ struct DeviceFinderIOSApp: App {
       if ProcessInfo.processInfo.environment["DB_FACTORY_MODE"] != nil {
         DbFactoryPage()
       } else {
-        LaunchPage().environmentObject(launchPageViewModel)
+        LaunchPage().environmentObject(launchState)
       }
     }
     .onChange(of: phase) { newPhase in

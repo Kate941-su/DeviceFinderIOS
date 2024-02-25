@@ -38,8 +38,11 @@ extension SHA256.Digest {
 }
 
 extension Device {
-  static func setDummydevice(geoPoint: GeoPoint, device_id: String, device_password: String) -> Device {
-      let dummyDevice = Device(position: geoPoint, device_id: device_id, device_password: device_password)
-      return dummyDevice
+  static func setDummydevice(geoPoint: GeoPoint, device_id: String, device_password: String)
+    -> Device
+  {
+    let dummyDevice = Device(
+      position: geoPoint, device_id: device_id, device_password: device_password)
+    return dummyDevice
   }
 }

@@ -45,7 +45,7 @@ struct RegisterPage: View {
   let deviceUuid: String? = Util.getDeviceUUID()
   let documentRepository: DocumentRepository = DocumentRepositoryImpl()
 
-  @EnvironmentObject var launchPageViewModel: LaunchPageViewModel
+  @EnvironmentObject var launchState: LaunchState
 
   @StateObject var geoLocationService = GeoLocationService.shared
 
@@ -62,117 +62,117 @@ struct RegisterPage: View {
   @State private var isInitialized = false
 
   var body: some View {
-      VStack(alignment: .leading) {
-        Text("Device ID")
+    VStack(alignment: .leading) {
+      Text("Device ID")
+        .padding()
+        .bold()
+      Text(deviceUuid ?? "Error(nil)")
+        .padding()
+      Text("Device Password")
+        .padding()
+        .bold()
+      // TODO: Secure Field
+      TextField("Enter Device Password", text: $password)
+        .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
+        .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
+      if password.count < MIN_PASSWORD_LENGTH {
+        Text("You have to set passowrd more than \(MIN_PASSWORD_LENGTH) words.")
+          .foregroundStyle(Color.red)
           .padding()
-          .bold()
-        Text(deviceUuid ?? "Error(nil)")
-          .padding()
-        Text("Device Password")
-          .padding()
-          .bold()
-        // TODO: Secure Field
-        TextField("Enter Device Password", text: $password)
-          .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
-          .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
-        if password.count < MIN_PASSWORD_LENGTH {
-          Text("You have to set passowrd more than \(MIN_PASSWORD_LENGTH) words.")
-            .foregroundStyle(Color.red)
-            .padding()
-        }
-        HStack {
-          Spacer()
-          TextButton(
-            text: "Register",
-            textColor: Color.white,
-            backGroundColor: Color.blue
-          )
-          .opacity(isInitialized ? 1.0 : 0.5)
-          .onTapGesture {
-            if isInitialized {
-              Task {
-                if password.count < MIN_PASSWORD_LENGTH {
-                  alertType = .invalidPassword
-                } else {
-                  guard self.deviceUuid != nil else {
-                    alertType = .failedToGetUuid
-                    return
-                  }
-                  let device = Device(
-                    position: geoPoint,
-                    device_id: Util.getDeviceUUID()!,
-                    device_password: password)
-                  do {
-                    try await documentRepository.setDocument(device: device) {
-                      launchPageViewModel.deviceRegisterState = .registered
-                      alertType = .valid
-                    }
-                  } catch {
-                    print("\(error)")
-                    alertType = .invalidByFirebase
-                  }
+      }
+      HStack {
+        Spacer()
+        TextButton(
+          text: "Register",
+          textColor: Color.white,
+          backGroundColor: Color.blue
+        )
+        .opacity(isInitialized ? 1.0 : 0.5)
+        .onTapGesture {
+          if isInitialized {
+            Task {
+              if password.count < MIN_PASSWORD_LENGTH {
+                alertType = .invalidPassword
+              } else {
+                guard self.deviceUuid != nil else {
+                  alertType = .failedToGetUuid
+                  return
                 }
-                isShowAlert = true
+                let device = Device(
+                  position: geoPoint,
+                  device_id: Util.getDeviceUUID()!,
+                  device_password: password)
+                do {
+                  try await documentRepository.setDocument(device: device) {
+                    launchState.state = .registered
+                    alertType = .valid
+                  }
+                } catch {
+                  print("\(error)")
+                  alertType = .invalidByFirebase
+                }
               }
+              isShowAlert = true
             }
           }
-          Spacer()
         }
-        .alert(
-          alertType.title,
-          isPresented: $isShowAlert,
-          actions: {
-            Button("OK") {
-              isShowAlert = false
-            }
-          }
-        ) {
-          Text(alertType.description)
-        }
-        if isInitialized {
-          // TODO: Debug Only
-          Text("Now your Location")
-            .fontWeight(.bold)
-            .padding()
-
-          // Debug Only
-          Text("latitude: \(geoPoint.latitude), longitude: \(geoPoint.longitude)")
-            .padding()
-          // End Debug Only
-
-          let place = [MarkerPlace(geoPoint: geoPoint)]
-          // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
-          Map(
-            coordinateRegion: $region,
-            interactionModes: .all,
-            annotationItems: place
-          ) { place in
-            MapMarker(
-              coordinate: place.location,
-              tint: Color.orange)
-          }
-        } else {
-          // TODO: Design Better
-          Spacer()
-          HStack(alignment: .center) {
-            Spacer()
-            ProgressView()
-              .progressViewStyle(.circular)
-              .scaleEffect(2.0)
-            Spacer()
-          }
-          Spacer()
-        }
+        Spacer()
       }
-      .navigationTitle("Register device")
-      .onAppear {
-        observeCoordinateUpdates()
-        observeLocationAccessDenied()
-        observeResionUpdates()
-        geoLocationService.requestLocationUpdates()
+      .alert(
+        alertType.title,
+        isPresented: $isShowAlert,
+        actions: {
+          Button("OK") {
+            isShowAlert = false
+          }
+        }
+      ) {
+        Text(alertType.description)
       }
-      .environmentObject(launchPageViewModel)
+      if isInitialized {
+        // TODO: Debug Only
+        Text("Now your Location")
+          .fontWeight(.bold)
+          .padding()
+
+        // Debug Only
+        Text("latitude: \(geoPoint.latitude), longitude: \(geoPoint.longitude)")
+          .padding()
+        // End Debug Only
+
+        let place = [MarkerPlace(geoPoint: geoPoint)]
+        // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
+        Map(
+          coordinateRegion: $region,
+          interactionModes: .all,
+          annotationItems: place
+        ) { place in
+          MapMarker(
+            coordinate: place.location,
+            tint: Color.orange)
+        }
+      } else {
+        // TODO: Design Better
+        Spacer()
+        HStack(alignment: .center) {
+          Spacer()
+          ProgressView()
+            .progressViewStyle(.circular)
+            .scaleEffect(2.0)
+          Spacer()
+        }
+        Spacer()
+      }
     }
+    .navigationTitle("Register device")
+    .onAppear {
+      observeCoordinateUpdates()
+      observeLocationAccessDenied()
+      observeResionUpdates()
+      geoLocationService.requestLocationUpdates()
+    }
+    .environmentObject(launchState)
+  }
 
   // TODO: Getting rid of deprecating of FindPage
   private func observeCoordinateUpdates() {

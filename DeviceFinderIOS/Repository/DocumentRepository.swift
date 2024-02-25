@@ -12,7 +12,8 @@ protocol DocumentRepository {
   func getDocument(completion: (() -> Void)?) async throws -> Device?
   func getAllDocuments(completion: (() -> Void)?) async throws -> [Device]
   func setDocument(device: Device, completion: (() -> Void)?) async throws
-  func updateDocument(device_id: String, fields: [AnyHashable: Any] ,completion: (() -> Void)?) async throws
+  func updateDocument(device_id: String, fields: [AnyHashable: Any], completion: (() -> Void)?)
+    async throws
   func deleteDocument(device_id: String, completion: (() -> Void)?) async throws
 }
 
@@ -56,10 +57,12 @@ class DocumentRepositoryImpl: ObservableObject, DocumentRepository {
       completion()
     }
   }
-  
-  func updateDocument(device_id: String, fields: [AnyHashable: Any], completion: (() -> Void)?) async throws {
+
+  func updateDocument(device_id: String, fields: [AnyHashable: Any], completion: (() -> Void)?)
+    async throws
+  {
     let db = Firestore.firestore()
     try await db.collection("Device").document(device_id).updateData(fields)
   }
-  
+
 }

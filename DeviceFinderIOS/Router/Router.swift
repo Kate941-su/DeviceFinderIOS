@@ -10,18 +10,16 @@ import SwiftUI
 
 enum Router: Int {
   case entrancePageRoute, findPageRoute, registerPageRoute, foundLocationPageRoute
-  
-  var toString: String {
-    get {
-      switch self {
-      case .entrancePageRoute: "Home"
-      case .findPageRoute:  "Find"
-      case .registerPageRoute: "Register"
-      case .foundLocationPageRoute: "FoundLocationPage"
-      }
+
+  var title: String {
+    switch self {
+    case .entrancePageRoute: "Home"
+    case .findPageRoute: "Find"
+    case .registerPageRoute: "Register"
+    case .foundLocationPageRoute: "FoundLocationPage"
     }
   }
-  
+
   @ViewBuilder
   func Destination() -> some View {
     switch self {

@@ -38,7 +38,9 @@ struct FindPage: View {
 
   // visibleForTesting
   let uuid: String = Util.getDeviceUUID() ?? ""
-  
+
+  let documentRepositoryImpl = DocumentRepositoryImpl()
+
   let initialRegion = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
     latitudinalMeters: MAP_BASE_SCALE,
@@ -47,8 +49,6 @@ struct FindPage: View {
 
   @State private var deviceId: String = ""
   @State private var password: String = ""
-
-  @StateObject private var findPageViewModel = FindPageViewModel()
   @State private var foundDeviceGeoPoint: GeoPoint?
   @State private var region = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
@@ -58,78 +58,50 @@ struct FindPage: View {
   @State var isShowAlert: Bool = false
   @State var mapFetchStatus: MapFetchStatus = .notYet
   @State var alertType: FindPageAlertType = .none
-  
+  @State var path = NavigationPath()
+
   @FocusState private var isDeviceIdFieldFocused: Bool
   @FocusState private var isDevicePasswordFieldFocused: Bool
 
   var body: some View {
-      VStack(alignment: .leading) {
-        Text("Device ID").padding()
-        TextField("Enter Device ID", text: $deviceId)
-          .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
-          .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
-          .focused($isDeviceIdFieldFocused)
-        Text("Device Password").padding()
-        TextField("Enter Device Password", text: $password)
-          .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
-          .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
-          .focused($isDevicePasswordFieldFocused)
-        HStack {
-          Spacer()
-          ButtonComponent(
+    VStack(alignment: .leading) {
+      Text("Device ID").padding()
+      TextField("Enter Device ID", text: $deviceId)
+        .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
+        .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
+        .focused($isDeviceIdFieldFocused)
+      Text("Device Password").padding()
+      TextField("Enter Device Password", text: $password)
+        .overlay(Rectangle().stroke(Color.black, lineWidth: 1))
+        .padding(EdgeInsets(top: 0, leading: 12, bottom: 12, trailing: 12))
+        .focused($isDevicePasswordFieldFocused)
+      HStack {
+        Spacer()
+        NavigationLink(value: Router.foundLocationPageRoute) {
+          TextButton(
             text: "Find",
             textColor: Color.white,
-            backGroundColor: Color.blue,
-            disabled: isDeviceIdFieldFocused || isDevicePasswordFieldFocused
-          ) {
-            Task {
-              mapFetchStatus = .loading
-              // TODO: Implementing Wrong Password
-              if let findDevice: Device = await findPageViewModel.findDevice(
-                device_id: deviceId,
-                device_password: password)
-              {
-                foundDeviceGeoPoint = GeoPoint(
-                  latitude: findDevice.position.latitude,
-                  longitude: findDevice.position.longitude)
-                region = MKCoordinateRegion(
-                  center: CLLocationCoordinate2D(
-                    latitude: CLLocationDegrees(foundDeviceGeoPoint!.latitude),
-                    longitude: CLLocationDegrees(foundDeviceGeoPoint!.longitude)),
-                  latitudinalMeters: MAP_BASE_SCALE,
-                  longitudinalMeters: MAP_BASE_SCALE
-                )
-                print($region)
-                mapFetchStatus = .ready
-              } else {
-                alertType = .noDevice
-                isShowAlert = true
-                mapFetchStatus = .notYet
-              }
-            }
-          }
-          Spacer()
-        }.padding()
-        switch mapFetchStatus {
-        case .ready:
-          Text("TODO: Navigation")
-        case .loading:
-          HStack(alignment: .center) {
-            Spacer()
-            ProgressView()
-              .progressViewStyle(.circular)
-              .scaleEffect(2.0)
-            Spacer()
-          }
-        case .notYet:
-          Text("Please fill in the textfield.")
+            backGroundColor: Color.blue
+          )
         }
         Spacer()
+      }.padding()
+      switch mapFetchStatus {
+      case .ready:
+        Text("TODO: Navigation")
+      case .loading:
+        HStack(alignment: .center) {
+          Spacer()
+          ProgressView()
+            .progressViewStyle(.circular)
+            .scaleEffect(2.0)
+          Spacer()
+        }
+      case .notYet:
+        Text("Please fill in the textfield.")
       }
-      .navigationTitle("Find")
-      .navigationDestination(for: Int.self, destination: { _ in
-        FoundLocationPage()
-      })
+      Spacer()
+    }
     .alert(
       "Error", isPresented: $isShowAlert,
       actions: {
@@ -140,7 +112,31 @@ struct FindPage: View {
     ) {
       Text("No device was founded")
     }
+    .navigationTitle("Find")
+    .navigationDestination(
+      for: Router.self,
+      destination: { it in
+        if true {
+          it.Destination()
+        }
+      }
+    )
   }
+
+  func findDevice(device_id: String, device_password: String) async -> Device? {
+    do {
+      let deviceDocuments = try await documentRepositoryImpl.getAllDocuments(completion: nil)
+      let device = deviceDocuments.first(where: {
+        $0.device_id == device_id && $0.device_password == device_password
+      })
+      return device
+    } catch {
+      // TODO: Error Handling
+      print(error)
+      return nil
+    }
+  }
+
 }
 
 #Preview{
