@@ -43,8 +43,8 @@ struct RegisterPage: View {
 
   let debugUuid: UUID = UUID()
   let deviceUuid: String? = Util.getDeviceUUID()
-  let documentRepository: DocumentRepository = DocumentRepositoryImpl()
-
+  let documentRepository: DocumentRepository
+  
   @EnvironmentObject var launchState: LaunchState
 
   @StateObject var geoLocationService = GeoLocationService.shared
@@ -61,6 +61,10 @@ struct RegisterPage: View {
   )
   @State private var isInitialized = false
 
+  init(documentRepository: DocumentRepository) {
+    self.documentRepository = documentRepository
+  }
+  
   var body: some View {
     VStack(alignment: .leading) {
       Text("Device ID")
@@ -213,5 +217,5 @@ struct RegisterPage: View {
 }
 
 #Preview{
-  RegisterPage()
+  RegisterPage(documentRepository: DocumentRepositoryImpl())
 }

@@ -12,12 +12,16 @@ import SwiftUI
 
 struct EntrancePage: View {
 
-  let documentRepository: DocumentRepository = DocumentRepositoryImpl()
+  let documentRepository: DocumentRepository
   @EnvironmentObject var launchState: LaunchState
 
   @State private var path = NavigationPath()
   @State private var isShowDeleteDialog = false
   @State private var isFetching = false
+  
+  init(documentrepositry: DocumentRepository) {
+    self.documentRepository = documentrepositry
+  }
 
   var body: some View {
     NavigationStack(path: $path) {
@@ -107,7 +111,7 @@ struct EntrancePage: View {
         .navigationDestination(
           for: Router.self,
           destination: { it in
-            it.Destination()
+            it.Destination(documentRepository: documentRepository)
               .navigationTitle(it.title)
               .navigationBarTitleDisplayMode(.inline)
           })
@@ -118,5 +122,5 @@ struct EntrancePage: View {
 }
 
 #Preview{
-  EntrancePage()
+  EntrancePage(documentrepositry: DocumentRepositoryImpl())
 }

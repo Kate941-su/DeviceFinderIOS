@@ -34,7 +34,7 @@ struct DeviceFinderIOSApp: App {
       if ProcessInfo.processInfo.environment["DB_FACTORY_MODE"] != nil {
         DbFactoryPage()
       } else {
-        LaunchPage().environmentObject(launchState)
+        LaunchPage(documentRepositry: DocumentRepositoryImpl()).environmentObject(launchState)
       }
     }
     .onChange(of: phase) { newPhase in

@@ -20,12 +20,13 @@ enum Router: Int {
     }
   }
 
+  // MEMO: Thanks to @ViewBuilder, you can contain multiple View components in the View closure.
   @ViewBuilder
-  func Destination() -> some View {
+  func Destination(documentRepository: DocumentRepository) -> some View {
     switch self {
-    case .entrancePageRoute: EntrancePage()
-    case .findPageRoute: FindPage()
-    case .registerPageRoute: RegisterPage()
+    case .entrancePageRoute: EntrancePage(documentrepositry: documentRepository)
+    case .findPageRoute: FindPage(documentRepository: documentRepository)
+    case .registerPageRoute: RegisterPage(documentRepository: documentRepository)
     case .foundLocationPageRoute: FoundLocationPage()
     }
   }

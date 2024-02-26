@@ -18,9 +18,14 @@ class LaunchState: ObservableObject {
 }
 
 struct LaunchPage: View {
-  let documentRepository = DocumentRepositoryImpl()
+  let documentRepository: DocumentRepository
   @EnvironmentObject private var launchState: LaunchState
 
+  init(documentRepositry: DocumentRepository) {
+    self.documentRepository = documentRepositry
+  }
+  
+  
   var body: some View {
     if launchState.state == .pending {
       VStack(alignment: .center) {
@@ -47,11 +52,11 @@ struct LaunchPage: View {
         }
       }
     } else {
-      EntrancePage()
+      EntrancePage(documentrepositry: documentRepository)
     }
   }
 }
 
 #Preview{
-  LaunchPage()
+  LaunchPage(documentRepositry: DocumentRepositoryImpl())
 }

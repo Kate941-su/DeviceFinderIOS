@@ -39,7 +39,7 @@ struct FindPage: View {
   // visibleForTesting
   let uuid: String = Util.getDeviceUUID() ?? ""
 
-  let documentRepositoryImpl = DocumentRepositoryImpl()
+  let documentRepository: DocumentRepository
 
   let initialRegion = MKCoordinateRegion(
     center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
@@ -62,6 +62,10 @@ struct FindPage: View {
 
   @FocusState private var isDeviceIdFieldFocused: Bool
   @FocusState private var isDevicePasswordFieldFocused: Bool
+  
+  init(documentRepository: DocumentRepository) {
+    self.documentRepository = documentRepository
+  }
 
   var body: some View {
     VStack(alignment: .leading) {
@@ -117,7 +121,7 @@ struct FindPage: View {
       for: Router.self,
       destination: { it in
         if true {
-          it.Destination()
+          it.Destination(documentRepository: documentRepository)
         }
       }
     )
@@ -125,7 +129,7 @@ struct FindPage: View {
 
   func findDevice(device_id: String, device_password: String) async -> Device? {
     do {
-      let deviceDocuments = try await documentRepositoryImpl.getAllDocuments(completion: nil)
+      let deviceDocuments = try await documentRepository.getAllDocuments(completion: nil)
       let device = deviceDocuments.first(where: {
         $0.device_id == device_id && $0.device_password == device_password
       })
@@ -140,5 +144,5 @@ struct FindPage: View {
 }
 
 #Preview{
-  FindPage()
+  FindPage(documentRepository: DocumentRepositoryImpl())
 }
