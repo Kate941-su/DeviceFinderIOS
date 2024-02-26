@@ -36,7 +36,6 @@ struct ButtonComponent: View {
     .multilineTextAlignment(.center)
     .bold()
     .padding()
-    .frame(width: 100, height: 50, alignment: .center)
     .foregroundColor(Color.white)
     .background(backGroundColor)
     .clipShape(RoundedRectangle(cornerRadius: 24))
@@ -46,7 +45,7 @@ struct ButtonComponent: View {
 
 #Preview{
   ButtonComponent(
-    text: "Demo",
+    text: "Update Debug",
     textColor: Color.white,
     backGroundColor: Color.blue,
     disabled: false

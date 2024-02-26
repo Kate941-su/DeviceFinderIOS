@@ -27,7 +27,6 @@ struct TextButton: View {
       .multilineTextAlignment(.center)
       .bold()
       .padding()
-      .frame(width: 100, height: 50, alignment: .center)
       .foregroundColor(Color.white)
       .background(backGroundColor)
       .clipShape(RoundedRectangle(cornerRadius: 24))
@@ -36,7 +35,7 @@ struct TextButton: View {
 
 #Preview{
   TextButton(
-    text: "Demo",
+    text: "KKKK",
     textColor: Color.white,
     backGroundColor: Color.blue
   ) {

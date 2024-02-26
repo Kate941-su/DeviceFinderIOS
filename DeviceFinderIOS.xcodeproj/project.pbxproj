@@ -56,9 +56,11 @@
 		D233D59D2B823E1E00D67CD6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233D59C2B823E1E00D67CD6 /* Util.swift */; };
 		D24E02492B861B0F004F0FB7 /* ButtonPressAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */; };
 		D24E024C2B8623D4004F0FB7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E024B2B8623D4004F0FB7 /* Router.swift */; };
-		D25DEC362B8C60CF000781A9 /* EntrancePageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEC352B8C60CF000781A9 /* EntrancePageTest.swift */; };
 		D25DEC382B8C6246000781A9 /* UnitTestFindPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEC372B8C6246000781A9 /* UnitTestFindPage.swift */; };
 		D25DEC3A2B8C6D4B000781A9 /* MockedDocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEC392B8C6D4B000781A9 /* MockedDocumentRepository.swift */; };
+		D25DEC3C2B8C74A6000781A9 /* UnitTestRegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEC3B2B8C74A6000781A9 /* UnitTestRegisterPage.swift */; };
+		D25DEC3E2B8CAC4E000781A9 /* FindPageUiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEC3D2B8CAC4E000781A9 /* FindPageUiTest.swift */; };
+		D25DEC402B8CAC8E000781A9 /* LaunchPageUiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DEC3F2B8CAC8E000781A9 /* LaunchPageUiTest.swift */; };
 		D277543F2B8B17C400EB49D9 /* FoundLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D277543E2B8B17C400EB49D9 /* FoundLocationPage.swift */; };
 		D27754422B8B818500EB49D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D27754442B8B818500EB49D9 /* Localizable.strings */; };
 		D2A0BC5C2B8AFB3D00092330 /* DbFactoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0BC5B2B8AFB3D00092330 /* DbFactoryPage.swift */; };
@@ -112,9 +114,11 @@
 		D233D59C2B823E1E00D67CD6 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D24E02482B861B0F004F0FB7 /* ButtonPressAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressAction.swift; sourceTree = "<group>"; };
 		D24E024B2B8623D4004F0FB7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		D25DEC352B8C60CF000781A9 /* EntrancePageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrancePageTest.swift; sourceTree = "<group>"; };
 		D25DEC372B8C6246000781A9 /* UnitTestFindPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestFindPage.swift; sourceTree = "<group>"; };
 		D25DEC392B8C6D4B000781A9 /* MockedDocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedDocumentRepository.swift; sourceTree = "<group>"; };
+		D25DEC3B2B8C74A6000781A9 /* UnitTestRegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestRegisterPage.swift; sourceTree = "<group>"; };
+		D25DEC3D2B8CAC4E000781A9 /* FindPageUiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPageUiTest.swift; sourceTree = "<group>"; };
+		D25DEC3F2B8CAC8E000781A9 /* LaunchPageUiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPageUiTest.swift; sourceTree = "<group>"; };
 		D277543E2B8B17C400EB49D9 /* FoundLocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundLocationPage.swift; sourceTree = "<group>"; };
 		D27754432B8B818500EB49D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D27754452B8B819400EB49D9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				D233D56E2B821D7A00D67CD6 /* DeviceFinderIOSTests.swift */,
 				D25DEC372B8C6246000781A9 /* UnitTestFindPage.swift */,
 				D25DEC392B8C6D4B000781A9 /* MockedDocumentRepository.swift */,
+				D25DEC3B2B8C74A6000781A9 /* UnitTestRegisterPage.swift */,
 			);
 			path = DeviceFinderIOSTests;
 			sourceTree = "<group>";
@@ -270,7 +275,8 @@
 			children = (
 				D233D5782B821D7A00D67CD6 /* DeviceFinderIOSUITests.swift */,
 				D233D57A2B821D7A00D67CD6 /* DeviceFinderIOSUITestsLaunchTests.swift */,
-				D25DEC352B8C60CF000781A9 /* EntrancePageTest.swift */,
+				D25DEC3D2B8CAC4E000781A9 /* FindPageUiTest.swift */,
+				D25DEC3F2B8CAC8E000781A9 /* LaunchPageUiTest.swift */,
 			);
 			path = DeviceFinderIOSUITests;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 				D233D56F2B821D7A00D67CD6 /* DeviceFinderIOSTests.swift in Sources */,
 				D25DEC3A2B8C6D4B000781A9 /* MockedDocumentRepository.swift in Sources */,
 				D25DEC382B8C6246000781A9 /* UnitTestFindPage.swift in Sources */,
+				D25DEC3C2B8C74A6000781A9 /* UnitTestRegisterPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +558,8 @@
 			files = (
 				D233D57B2B821D7A00D67CD6 /* DeviceFinderIOSUITestsLaunchTests.swift in Sources */,
 				D233D5792B821D7A00D67CD6 /* DeviceFinderIOSUITests.swift in Sources */,
-				D25DEC362B8C60CF000781A9 /* EntrancePageTest.swift in Sources */,
+				D25DEC3E2B8CAC4E000781A9 /* FindPageUiTest.swift in Sources */,
+				D25DEC402B8CAC8E000781A9 /* LaunchPageUiTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +843,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D44U773BCL;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaitokitaya.DeviceFinderIOSUITests;
@@ -857,7 +865,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D44U773BCL;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaitokitaya.DeviceFinderIOSUITests;
