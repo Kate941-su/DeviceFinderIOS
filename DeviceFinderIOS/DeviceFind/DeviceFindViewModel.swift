@@ -5,9 +5,8 @@
 //  Created by KaitoKitaya on 2024/02/29.
 //
 
-import Foundation
-
 import FirebaseFirestore
+import Foundation
 import MapKit
 import SwiftUI
 
@@ -36,13 +35,13 @@ enum MapFetchStatus {
 }
 
 class DeviceFindViewModel: ObservableObject {
-  
+
   let documentRepository: DocumentRepository
-  
+
   init(documentRepository: DocumentRepository) {
     self.documentRepository = documentRepository
   }
-  
+
   @Published var deviceId: String = ""
   @Published var password: String = ""
   @Published var foundDeviceGeoPoint: GeoPoint?
@@ -55,7 +54,7 @@ class DeviceFindViewModel: ObservableObject {
   @Published var mapFetchStatus: MapFetchStatus = .notYet
   @Published var alertType: FindPageAlertType = .none
   @Published var path = NavigationPath()
-  
+
   func findDevice(device_id: String, device_password: String) async -> Device? {
     do {
       let deviceDocuments = try await documentRepository.getAllDocuments(completion: nil)
@@ -69,6 +68,5 @@ class DeviceFindViewModel: ObservableObject {
       return nil
     }
   }
-  
 
 }

@@ -14,5 +14,5 @@ enum DeviceRegisterState {
 }
 
 class DeviceRegisterStateNotifier: ObservableObject {
-    @Published var state: DeviceRegisterState = .pending
+  @Published var state: DeviceRegisterState = .pending
 }

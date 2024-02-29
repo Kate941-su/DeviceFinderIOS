@@ -26,7 +26,7 @@ struct DeviceFinderIOSApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @Environment(\.scenePhase) private var phase
   @StateObject private var deviceRegisterStateNotifier = DeviceRegisterStateNotifier()
-  
+
   // TODO: GeoLocationManageer
   // @StateObject private var location
 
@@ -37,7 +37,8 @@ struct DeviceFinderIOSApp: App {
       if ProcessInfo.processInfo.environment["DB_FACTORY_MODE"] != nil {
         DbFactoryPage()
       } else {
-        SplashScreen(documentRepositry: DocumentRepositoryImpl()).environmentObject(deviceRegisterStateNotifier)
+        SplashScreen(documentRepositry: DocumentRepositoryImpl()).environmentObject(
+          deviceRegisterStateNotifier)
       }
     }
     .onChange(of: phase) { newPhase in

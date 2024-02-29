@@ -25,12 +25,18 @@ enum Router: Int {
   func Destination(documentRepository: DocumentRepository) -> some View {
     let documentRepositoryImpl = DocumentRepositoryImpl()
     switch self {
-    case .entrancePageRoute: EntranceScreen(entranceViewModel: EntranceViewModel(documentRepository: documentRepositoryImpl))
-      
-    case .findPageRoute: DeviceFindScreen(deviceFindViewModel: DeviceFindViewModel(documentRepository: documentRepositoryImpl))
-    
-    case .registerPageRoute: RegisterScreen(documentRepository: documentRepository)
-    
+    case .entrancePageRoute:
+      EntranceScreen(
+        entranceViewModel: EntranceViewModel(documentRepository: documentRepositoryImpl))
+
+    case .findPageRoute:
+      DeviceFindScreen(
+        deviceFindViewModel: DeviceFindViewModel(documentRepository: documentRepositoryImpl))
+
+    case .registerPageRoute:
+      RegisterScreen(
+        registerViewModel: RegisterViewModel(documentRepository: DocumentRepositoryImpl()))
+
     case .foundLocationPageRoute: DeviceFoundScreen()
     }
   }

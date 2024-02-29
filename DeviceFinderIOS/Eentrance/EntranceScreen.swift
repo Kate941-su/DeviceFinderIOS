@@ -11,7 +11,7 @@ import SwiftUI
 // https://qiita.com/yoshi-eng/items/91666637cd7cdd8edf88
 
 struct EntranceScreen: View {
-  
+
   @EnvironmentObject var deviceRegisterStateNotifier: DeviceRegisterStateNotifier
   @StateObject var entranceViewModel: EntranceViewModel
 

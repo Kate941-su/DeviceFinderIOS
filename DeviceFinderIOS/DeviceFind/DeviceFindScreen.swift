@@ -10,22 +10,13 @@ import FirebaseFirestore
 import MapKit
 import SwiftUI
 
-
 struct DeviceFindScreen: View {
 
-  // visibleForTesting
-  let uuid: String = Util.getDeviceUUID() ?? ""
-  let initialRegion = MKCoordinateRegion(
-    center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-    latitudinalMeters: MAP_BASE_SCALE,
-    longitudinalMeters: MAP_BASE_SCALE
-  )
-  
   @StateObject var deviceFindViewModel: DeviceFindViewModel
 
-  @FocusState  var isDeviceIdFieldFocused: Bool
+  @FocusState var isDeviceIdFieldFocused: Bool
   @FocusState var isDevicePasswordFieldFocused: Bool
-  
+
   var body: some View {
     VStack(alignment: .leading) {
       Text("Device ID").padding()
@@ -88,5 +79,6 @@ struct DeviceFindScreen: View {
 }
 
 #Preview{
-  DeviceFindScreen(deviceFindViewModel: DeviceFindViewModel(documentRepository: DocumentRepositoryImpl()))
+  DeviceFindScreen(
+    deviceFindViewModel: DeviceFindViewModel(documentRepository: DocumentRepositoryImpl()))
 }

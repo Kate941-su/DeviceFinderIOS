@@ -14,7 +14,7 @@ import MapKit
 let POLE_RADIUS: Double = 6356752.314245
 let EQUATOR_RADIUS: Double = 6378137.0
 
-class GeoLocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
+class GeoLocationNotifier: NSObject, CLLocationManagerDelegate, ObservableObject {
   // Notify event
   var coordinatesPublisher = PassthroughSubject<CLLocationCoordinate2D, Error>()
 
@@ -26,7 +26,7 @@ class GeoLocationService: NSObject, CLLocationManagerDelegate, ObservableObject 
     super.init()
   }
 
-  static let shared = GeoLocationService()
+  static let shared = GeoLocationNotifier()
 
   private lazy var locationManager: CLLocationManager = {
     let manager = CLLocationManager()
