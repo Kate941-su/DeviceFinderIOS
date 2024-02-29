@@ -35,7 +35,7 @@ enum Router: Int {
 
     case .registerPageRoute:
       RegisterScreen(
-        registerViewModel: RegisterViewModel(documentRepository: DocumentRepositoryImpl()))
+        registerViewModel: RegisterViewModel(documentRepository: documentRepositoryImpl))
 
     case .foundLocationPageRoute: DeviceFoundScreen()
     }

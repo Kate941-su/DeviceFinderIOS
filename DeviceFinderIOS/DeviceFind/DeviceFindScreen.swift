@@ -67,14 +67,6 @@ struct DeviceFindScreen: View {
     ) {
       Text("No device was founded")
     }
-    .navigationDestination(
-      for: Router.self,
-      destination: { it in
-        if true {
-          it.Destination(documentRepository: deviceFindViewModel.documentRepository)
-        }
-      }
-    )
   }
 }
 

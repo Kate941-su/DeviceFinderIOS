@@ -53,7 +53,6 @@ class DeviceFindViewModel: ObservableObject {
   @Published var isShowAlert: Bool = false
   @Published var mapFetchStatus: MapFetchStatus = .notYet
   @Published var alertType: FindPageAlertType = .none
-  @Published var path = NavigationPath()
 
   func findDevice(device_id: String, device_password: String) async -> Device? {
     do {

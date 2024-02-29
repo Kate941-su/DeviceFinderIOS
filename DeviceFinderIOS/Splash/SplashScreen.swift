@@ -26,7 +26,6 @@ struct SplashScreen: View {
       .environmentObject(deviceRegisterStateNotifier)
       .onAppear {
         Task {
-          // TODO: Firebase Fetch Error Handling
           do {
             let uuid = Util.getDeviceUUID() ?? ""
             let deviceList = try await documentRepository.getAllDocuments(completion: nil)
@@ -36,6 +35,7 @@ struct SplashScreen: View {
               deviceRegisterStateNotifier.state = .notRegisterd
             }
           } catch {
+            // TODO: Firebase Fetch Error Handling
             print("[Launch Page]: \(error)")
           }
         }
