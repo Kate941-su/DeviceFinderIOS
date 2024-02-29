@@ -9,7 +9,7 @@ import CryptoKit
 import FirebaseFirestore
 import Foundation
 
-struct Device: Identifiable, Codable {
+struct Device: Identifiable, Codable, Equatable {
   @DocumentID var id: String?
   var position: GeoPoint
   let device_id: String

@@ -7,34 +7,23 @@
 
 import SwiftUI
 
-enum DeviceRegisterState {
-  case pending
-  case notRegisterd
-  case registered
-}
-
-class LaunchState: ObservableObject {
-  @Published var state: DeviceRegisterState = .pending
-}
-
-struct LaunchPage: View {
+struct SplashScreen: View {
   let documentRepository: DocumentRepository
-  @EnvironmentObject private var launchState: LaunchState
+  @EnvironmentObject private var deviceRegisterStateNotifier: DeviceRegisterStateNotifier
 
   init(documentRepositry: DocumentRepository) {
     self.documentRepository = documentRepositry
   }
-  
-  
+
   var body: some View {
-    if launchState.state == .pending {
+    if deviceRegisterStateNotifier.state == .pending {
       VStack(alignment: .center) {
         Image(.splash)
           .resizable()
           .aspectRatio(contentMode: .fit)
           .padding()
       }
-      .environmentObject(launchState)
+      .environmentObject(deviceRegisterStateNotifier)
       .onAppear {
         Task {
           // TODO: Firebase Fetch Error Handling
@@ -42,9 +31,9 @@ struct LaunchPage: View {
             let uuid = Util.getDeviceUUID() ?? ""
             let deviceList = try await documentRepository.getAllDocuments(completion: nil)
             if deviceList.map({ it in it.device_id }).contains(uuid) {
-              launchState.state = .registered
+              deviceRegisterStateNotifier.state = .registered
             } else {
-              launchState.state = .notRegisterd
+              deviceRegisterStateNotifier.state = .notRegisterd
             }
           } catch {
             print("[Launch Page]: \(error)")
@@ -52,11 +41,11 @@ struct LaunchPage: View {
         }
       }
     } else {
-      EntrancePage(documentrepositry: documentRepository)
+      EntranceScreen(entranceViewModel: EntranceViewModel(documentRepository: documentRepository))
     }
   }
 }
 
 #Preview{
-  LaunchPage(documentRepositry: DocumentRepositoryImpl())
+  SplashScreen(documentRepositry: DocumentRepositoryImpl())
 }

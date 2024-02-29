@@ -11,17 +11,20 @@ struct ButtonComponent: View {
   let text: String
   let textColor: Color
   let backGroundColor: Color
+  var width: CGFloat? = 120
   var disabled: Bool = false
   var callback: (() -> Void)?
 
   init(
     text: String, textColor: Color, backGroundColor: Color, disabled: Bool = false,
+    width: CGFloat = 120,
     callback: (() -> Void)? = nil
   ) {
     self.text = text
     self.backGroundColor = backGroundColor
     self.textColor = textColor
     self.disabled = disabled
+    self.width = width
     self.callback = callback
   }
 
@@ -36,6 +39,7 @@ struct ButtonComponent: View {
     .multilineTextAlignment(.center)
     .bold()
     .padding()
+    .frame(width: width, height: 50, alignment: .center)
     .foregroundColor(Color.white)
     .background(backGroundColor)
     .clipShape(RoundedRectangle(cornerRadius: 24))
@@ -45,10 +49,11 @@ struct ButtonComponent: View {
 
 #Preview{
   ButtonComponent(
-    text: "Update Debug",
+    text: "Update Location",
     textColor: Color.white,
     backGroundColor: Color.blue,
-    disabled: false
+    disabled: false,
+    width: 300
   ) {
     print("Button Tapped")
   }

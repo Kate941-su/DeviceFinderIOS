@@ -1,5 +1,5 @@
 //
-//  RegisterPage.swift
+//  RegisterScreen.swift
 //  DeviceFinderIOS
 //
 //  Created by KaitoKitaya on 2024/02/18.
@@ -10,7 +10,7 @@ import FirebaseFirestore
 import MapKit
 import SwiftUI
 
-private enum AlertType {
+enum AlertType {
   case valid
   case invalidPassword
   case invalidByFirebase
@@ -39,17 +39,17 @@ private enum AlertType {
 
 }
 
-struct RegisterPage: View {
+struct RegisterScreen: View {
 
   let debugUuid: UUID = UUID()
   let deviceUuid: String? = Util.getDeviceUUID()
   let documentRepository: DocumentRepository
-  
-  @EnvironmentObject var launchState: LaunchState
+
+  @EnvironmentObject var deviceRegisterStateNotifier: DeviceRegisterStateNotifier
 
   @StateObject var geoLocationService = GeoLocationService.shared
 
-  @State private var password: String = "aaaaaaaa"
+  @State private var password: String = ""
   @State private var tokens: Set<AnyCancellable> = []
   @State private var geoPoint: GeoPoint = GeoPoint(latitude: 0.0, longitude: 0.0)
   @State private var isShowAlert: Bool = false
@@ -59,18 +59,19 @@ struct RegisterPage: View {
     latitudinalMeters: MAP_BASE_SCALE,
     longitudinalMeters: MAP_BASE_SCALE
   )
-  @State private var isInitialized = false
+  @State private var isInitialized = true
+  @State private var options: MKMapSnapshotter.Options = .init()
 
   init(documentRepository: DocumentRepository) {
     self.documentRepository = documentRepository
   }
-  
+
   var body: some View {
     VStack(alignment: .leading) {
       Text("Device ID")
         .padding()
         .bold()
-      Text(deviceUuid ?? "Error(nil)")
+      Text(deviceUuid ?? "")
         .padding()
       Text("Device Password")
         .padding()
@@ -84,44 +85,51 @@ struct RegisterPage: View {
           .foregroundStyle(Color.red)
           .padding()
       }
+      // TODO: Debug Only
+      Text("Now your Location")
+        .fontWeight(.bold)
+        .padding()
+
+      // Debug Only
+      Text("latitude: \(geoPoint.latitude), longitude: \(geoPoint.longitude)")
+        .padding()
       HStack {
         Spacer()
         TextButton(
           text: "Register",
           textColor: Color.white,
-          backGroundColor: Color.blue
+          backGroundColor: Color.green
         )
         .opacity(isInitialized ? 1.0 : 0.5)
         .onTapGesture {
-          if isInitialized {
-            Task {
-              if password.count < MIN_PASSWORD_LENGTH {
-                alertType = .invalidPassword
-              } else {
-                guard self.deviceUuid != nil else {
-                  alertType = .failedToGetUuid
-                  return
-                }
-                let device = Device(
-                  position: geoPoint,
-                  device_id: Util.getDeviceUUID()!,
-                  device_password: password)
-                do {
-                  try await documentRepository.setDocument(device: device) {
-                    launchState.state = .registered
-                    alertType = .valid
-                  }
-                } catch {
-                  print("\(error)")
-                  alertType = .invalidByFirebase
-                }
+          Task {
+            if password.count < MIN_PASSWORD_LENGTH {
+              alertType = .invalidPassword
+            } else {
+              guard self.deviceUuid != nil else {
+                alertType = .failedToGetUuid
+                return
               }
-              isShowAlert = true
+              let device = Device(
+                position: geoPoint,
+                device_id: Util.getDeviceUUID()!,
+                device_password: password)
+              do {
+                try await documentRepository.setDocument(device: device) {
+                  deviceRegisterStateNotifier.state = .registered
+                  alertType = .valid
+                }
+              } catch {
+                print("\(error)")
+                alertType = .invalidByFirebase
+              }
             }
+            isShowAlert = true
           }
         }
         Spacer()
       }
+      Spacer()
       .alert(
         alertType.title,
         isPresented: $isShowAlert,
@@ -133,49 +141,13 @@ struct RegisterPage: View {
       ) {
         Text(alertType.description)
       }
-      if isInitialized {
-        // TODO: Debug Only
-        Text("Now your Location")
-          .fontWeight(.bold)
-          .padding()
-
-        // Debug Only
-        Text("latitude: \(geoPoint.latitude), longitude: \(geoPoint.longitude)")
-          .padding()
-        // End Debug Only
-
-        let place = [MarkerPlace(geoPoint: geoPoint)]
-        // TODO: Use bounds, interactionModes: scope if OS version >= iOS 17
-        Map(
-          coordinateRegion: $region,
-          interactionModes: .all,
-          annotationItems: place
-        ) { place in
-          MapMarker(
-            coordinate: place.location,
-            tint: Color.orange)
-        }
-      } else {
-        // TODO: Design Better
-        Spacer()
-        HStack(alignment: .center) {
-          Spacer()
-          ProgressView()
-            .progressViewStyle(.circular)
-            .scaleEffect(2.0)
-          Spacer()
-        }
-        Spacer()
-      }
     }
-    .navigationTitle("Register device")
     .onAppear {
       observeCoordinateUpdates()
       observeLocationAccessDenied()
-      observeResionUpdates()
       geoLocationService.requestLocationUpdates()
     }
-    .environmentObject(launchState)
+    .environmentObject(deviceRegisterStateNotifier)
   }
 
   // TODO: Getting rid of deprecating of FindPage
@@ -201,21 +173,21 @@ struct RegisterPage: View {
         print("Show some kind of alert to the user")
       }.store(in: &tokens)
   }
-  private func observeResionUpdates() {
-    geoLocationService.resionPublisher.first().sink(
-      receiveCompletion: { completion in
-        // TODO: Error Handling
-        print(completion)
-      },
-      receiveValue: { value in
-        region = value
-        print(value)
-        isInitialized = true
-      }
-    ).store(in: &tokens)
-  }
+  //  private func observeResionUpdates() {
+  //    geoLocationService.resionPublisher.first().sink(
+  //      receiveCompletion: { completion in
+  //        // TODO: Error Handling
+  //        print(completion)
+  //      },
+  //      receiveValue: { value in
+  //        region = value
+  //        print("observed region is => \(value)")
+  //        isInitialized = true
+  //      }
+  //    ).store(in: &tokens)
+  //  }
 }
 
 #Preview{
-  RegisterPage(documentRepository: DocumentRepositoryImpl())
+  RegisterScreen(documentRepository: DocumentRepositoryImpl())
 }

@@ -12,21 +12,27 @@ struct TextButton: View {
   let textColor: Color
   let backGroundColor: Color
   var callback: (() -> Void)?
+  var width: CGFloat
+  var height: CGFloat
 
-  init(text: String, textColor: Color, backGroundColor: Color, callback: (() -> Void)? = nil) {
+  init(
+    text: String, textColor: Color, backGroundColor: Color,
+    width: CGFloat? = 120, height: CGFloat? = 48, callback: (() -> Void)? = nil
+  ) {
     self.text = text
     self.backGroundColor = backGroundColor
     self.textColor = textColor
     self.callback = callback
+    self.width = width!
+    self.height = height!
   }
-
-  @State var isTapped = false
 
   var body: some View {
     Text(text)
       .multilineTextAlignment(.center)
       .bold()
       .padding()
+      .frame(width: width, height: height, alignment: .center)
       .foregroundColor(Color.white)
       .background(backGroundColor)
       .clipShape(RoundedRectangle(cornerRadius: 24))

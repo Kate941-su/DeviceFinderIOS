@@ -1,5 +1,5 @@
 //
-//  EntrancePage.swift
+//  EntranceScreen.swift
 //  DeviceFinderIOS
 //
 //  Created by KaitoKitaya on 2024/02/18.
@@ -10,23 +10,15 @@ import SwiftUI
 // TODO: Update NavigationStack With Path
 // https://qiita.com/yoshi-eng/items/91666637cd7cdd8edf88
 
-struct EntrancePage: View {
-
-  let documentRepository: DocumentRepository
-  @EnvironmentObject var launchState: LaunchState
-
-  @State private var path = NavigationPath()
-  @State private var isShowDeleteDialog = false
-  @State private var isFetching = false
+struct EntranceScreen: View {
   
-  init(documentrepositry: DocumentRepository) {
-    self.documentRepository = documentrepositry
-  }
+  @EnvironmentObject var deviceRegisterStateNotifier: DeviceRegisterStateNotifier
+  @StateObject var entranceViewModel: EntranceViewModel
 
   var body: some View {
-    NavigationStack(path: $path) {
+    NavigationStack(path: $entranceViewModel.path) {
       ZStack {
-        if isFetching {
+        if entranceViewModel.isFetching {
           ProgressView()
             .progressViewStyle(.circular)
             .scaleEffect(2.0)
@@ -45,7 +37,7 @@ struct EntrancePage: View {
           Spacer()
           Divider()
           Spacer()
-          if launchState.state == .notRegisterd {
+          if deviceRegisterStateNotifier.state == .notRegisterd {
             NavigationLink(
               value: Router.registerPageRoute,
               label: {
@@ -55,7 +47,7 @@ struct EntrancePage: View {
                   backGroundColor: Color.green)
               }
             )
-          } else if launchState.state == .registered {
+          } else if deviceRegisterStateNotifier.state == .registered {
             TextButton(
               text: "Delete",
               textColor: Color.white,
@@ -63,27 +55,27 @@ struct EntrancePage: View {
             )
             .onTapGesture {
               print("Delete tapped")
-              isShowDeleteDialog = true
+              entranceViewModel.isShowDeleteDialog = true
             }
             .alert(
               "Confirmation",
-              isPresented: $isShowDeleteDialog,
+              isPresented: $entranceViewModel.isShowDeleteDialog,
               actions: {
                 Button("No", role: .cancel) {
-                  isShowDeleteDialog = false
+                  entranceViewModel.isShowDeleteDialog = false
                 }
                 Button("Yes") {
                   Task {
                     defer {
-                      isFetching = false
-                      isShowDeleteDialog = false
+                      entranceViewModel.isFetching = false
+                      entranceViewModel.isShowDeleteDialog = false
                     }
                     // TODO: nil Handling
                     do {
-                      isFetching = true
-                      try await documentRepository.deleteDocument(
+                      entranceViewModel.isFetching = true
+                      try await entranceViewModel.documentRepository.deleteDocument(
                         device_id: Util.getDeviceUUID() ?? "", completion: nil)
-                      launchState.state = .notRegisterd
+                      deviceRegisterStateNotifier.state = .notRegisterd
                     } catch {
                       print(error)
                     }
@@ -99,7 +91,7 @@ struct EntrancePage: View {
             Divider()
             Spacer()
             TextButton(
-              text: "Update Location",
+              text: "Update",
               textColor: Color.white,
               backGroundColor: Color.orange
             )
@@ -111,16 +103,18 @@ struct EntrancePage: View {
         .navigationDestination(
           for: Router.self,
           destination: { it in
-            it.Destination(documentRepository: documentRepository)
+            it.Destination(documentRepository: entranceViewModel.documentRepository)
               .navigationTitle(it.title)
               .navigationBarTitleDisplayMode(.inline)
           })
       }
-      .environmentObject(launchState)
+      .environmentObject(deviceRegisterStateNotifier)
+      .navigationTitle(Router.entrancePageRoute.title)
+      .navigationBarTitleDisplayMode(.inline)
     }
   }
 }
 
 #Preview{
-  EntrancePage(documentrepositry: DocumentRepositoryImpl())
+  EntranceScreen(entranceViewModel: EntranceViewModel(documentRepository: DocumentRepositoryImpl()))
 }

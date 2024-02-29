@@ -8,7 +8,7 @@
 import MapKit
 import SwiftUI
 
-struct FoundLocationPage: View {
+struct DeviceFoundScreen: View {
   var body: some View {
     Text("Your device is here")
 
@@ -16,5 +16,5 @@ struct FoundLocationPage: View {
 }
 
 #Preview{
-  FoundLocationPage()
+  DeviceFoundScreen()
 }

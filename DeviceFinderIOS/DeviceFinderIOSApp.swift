@@ -25,7 +25,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct DeviceFinderIOSApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @Environment(\.scenePhase) private var phase
-  @StateObject private var launchState = LaunchState()
+  @StateObject private var deviceRegisterStateNotifier = DeviceRegisterStateNotifier()
+  
+  // TODO: GeoLocationManageer
+  // @StateObject private var location
 
   var body: some Scene {
     WindowGroup {
@@ -34,7 +37,7 @@ struct DeviceFinderIOSApp: App {
       if ProcessInfo.processInfo.environment["DB_FACTORY_MODE"] != nil {
         DbFactoryPage()
       } else {
-        LaunchPage(documentRepositry: DocumentRepositoryImpl()).environmentObject(launchState)
+        SplashScreen(documentRepositry: DocumentRepositoryImpl()).environmentObject(deviceRegisterStateNotifier)
       }
     }
     .onChange(of: phase) { newPhase in
