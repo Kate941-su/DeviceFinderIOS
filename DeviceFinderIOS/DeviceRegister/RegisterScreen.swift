@@ -24,6 +24,7 @@ struct RegisterScreen: View {
         .padding()
         .bold()
       Text(deviceUuid ?? "")
+        .textSelection(.enabled)
         .padding()
       Text("Device Password")
         .padding()
